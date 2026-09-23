@@ -12,113 +12,224 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f3f8f3;
-    color: #18351f;
+    background: #f4f8f4;
+    color: #17251b;
 }
 
 /* HEADER */
 
 header {
-    background: linear-gradient(135deg, #176b3a, #35a853);
+    background: linear-gradient(135deg, #0b542d, #42b866);
     color: white;
-    padding: 35px 20px;
-    text-align: center;
+    padding: 55px 20px;
+}
+
+.header {
+    max-width: 1150px;
+    margin: auto;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 35px;
 }
 
 header h1 {
+    font-size: clamp(42px, 7vw, 72px);
     margin: 0;
-    font-size: 42px;
+    line-height: 1;
 }
 
 header p {
-    margin-top: 10px;
-    font-size: 18px;
+    max-width: 650px;
+    font-size: 19px;
+    line-height: 1.6;
 }
 
-/* ZOEKEN */
-
-.search-area {
-    max-width: 900px;
-    margin: 25px auto;
-    padding: 0 20px;
+.header-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 14px 22px;
+    background: white;
+    color: #176b3a;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-#search {
+/* NAV */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    box-shadow: 0 2px 12px #0002;
+}
+
+.nav-inner {
+    max-width: 1150px;
+    margin: auto;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    color: #176b3a;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 22px;
+}
+
+.nav-links a {
+    color: #17251b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* MAIN */
+
+main {
+    max-width: 1150px;
+    margin: auto;
+    padding: 45px 20px;
+}
+
+.section-title {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+.section-description {
+    color: #657067;
+    margin-bottom: 30px;
+}
+
+/* SEARCH */
+
+.search {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.search input {
     width: 100%;
-    padding: 16px;
-    border: none;
-    border-radius: 14px;
-    box-shadow: 0 3px 12px #0002;
-    font-size: 17px;
+    padding: 17px 20px 17px 50px;
+    border: 2px solid #e0e9e1;
+    border-radius: 15px;
+    background: white;
+    font-size: 16px;
+    outline: none;
 }
 
-/* CATEGORIEËN */
+.search input:focus {
+    border-color: #35a853;
+}
+
+.search span {
+    position: absolute;
+    left: 17px;
+    top: 14px;
+    font-size: 22px;
+}
+
+/* CATEGORIES */
 
 .categories {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 10px;
-    padding: 10px 20px 25px;
+    margin-bottom: 25px;
 }
 
-.categories button {
+.category {
     border: none;
     background: white;
-    padding: 11px 18px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: bold;
     color: #176b3a;
-    box-shadow: 0 2px 8px #0002;
+    padding: 11px 17px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #0001;
 }
 
-.categories button:hover,
-.categories button.active {
+.category:hover,
+.category.active {
     background: #176b3a;
     color: white;
 }
 
-/* RECEPTEN */
+/* SELECTS */
 
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 10px 20px 50px;
+.selects {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
 }
+
+.select-box {
+    background: white;
+    padding: 12px 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #0001;
+}
+
+.select-box select {
+    border: none;
+    font-weight: bold;
+    background: transparent;
+    outline: none;
+}
+
+/* GRID */
 
 .recipe-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 22px;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 24px;
 }
+
+/* CARD */
 
 .recipe {
     background: white;
-    border-radius: 18px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 5px 18px #0002;
-    transition: transform .2s;
+    box-shadow: 0 5px 20px #0002;
+    transition: transform .2s, box-shadow .2s;
 }
 
 .recipe:hover {
     transform: translateY(-5px);
+    box-shadow: 0 12px 30px #0003;
 }
 
 .recipe-image {
-    height: 170px;
+    height: 190px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 65px;
-    background: #dff2df;
+    align-items: center;
+    font-size: 70px;
+    background: linear-gradient(135deg, #dff4e2, #bce8c7);
 }
 
 .recipe-content {
-    padding: 18px;
+    padding: 20px;
 }
 
 .recipe h2 {
@@ -127,60 +238,118 @@ header p {
 }
 
 .chef {
-    color: #176b3a;
+    color: #218047;
     font-weight: bold;
+}
+
+.tags {
+    margin-top: 12px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 6px 9px;
+    margin: 3px;
+    border-radius: 8px;
+    background: #e8f5ea;
+    color: #176b3a;
+    font-size: 12px;
 }
 
 .info {
     display: flex;
     justify-content: space-between;
-    margin: 15px 0;
+    margin: 18px 0;
+    color: #657067;
     font-size: 14px;
 }
 
-.tag {
-    display: inline-block;
-    background: #e6f5e8;
-    color: #176b3a;
-    padding: 5px 9px;
-    border-radius: 8px;
-    margin: 3px;
-    font-size: 12px;
+.buttons {
+    display: flex;
+    gap: 8px;
 }
 
-.recipe a {
-    display: block;
-    text-align: center;
-    background: #176b3a;
-    color: white;
-    text-decoration: none;
+.recipe-link {
+    flex: 1;
     padding: 12px;
     border-radius: 10px;
+    background: #176b3a;
+    color: white;
+    text-align: center;
+    text-decoration: none;
     font-weight: bold;
 }
 
-.recipe a:hover {
-    background: #0e4d29;
+.recipe-link:hover {
+    background: #0d4d29;
 }
 
+.favorite {
+    width: 46px;
+    border: none;
+    border-radius: 10px;
+    background: #edf3ee;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.favorite.saved {
+    background: #ffe3e3;
+}
+
+/* NO RESULTS */
+
 .no-results {
+    display: none;
+    background: white;
+    border-radius: 18px;
+    padding: 45px;
     text-align: center;
-    padding: 40px;
-    font-size: 20px;
+}
+
+/* INFO */
+
+.info-box {
+    margin-top: 55px;
+    background: #e0f3e4;
+    border-radius: 20px;
+    padding: 30px;
+    line-height: 1.6;
 }
 
 /* FOOTER */
 
 footer {
-    background: #12351f;
+    background: #102e1b;
     color: white;
     text-align: center;
-    padding: 25px;
-    margin-top: 30px;
+    padding: 35px 20px;
+    line-height: 1.6;
 }
 
 footer a {
-    color: #8ee59d;
+    color: #9be8ad;
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-inner {
+        justify-content: center;
+    }
+
+    header {
+        padding: 40px 20px;
+    }
+
+    .recipe-grid {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 </head>
@@ -188,231 +357,573 @@ footer a {
 <body>
 
 <header>
-    <h1>🥗 FitFood Recipes</h1>
-    <p>Echte recepten van bekende chefs — maximaal 400 kcal</p>
+
+    <div class="header">
+
+        <div class="logo">
+            🥗 FITFOOD RECIPES
+        </div>
+
+        <h1>
+            Lekker eten.<br>
+            Maximaal 400 kcal.
+        </h1>
+
+        <p>
+            Ontdek echte recepten van bekende chefs
+            en vind ze snel op categorie, chef en calorieën.
+        </p>
+
+        <a href="#recepten" class="header-button">
+            Bekijk recepten ↓
+        </a>
+
+    </div>
+
 </header>
 
-<div class="search-area">
-    <input
-        type="text"
-        id="search"
-        placeholder="🔎 Zoek bijvoorbeeld op pasta, salade of kip..."
-        oninput="filterRecipes()"
-    >
-</div>
+<nav>
 
-<div class="categories">
+    <div class="nav-inner">
 
-    <button class="active" onclick="setCategory('Alles', this)">
-        Alles
-    </button>
+        <div class="nav-logo">
+            🥗 FitFood
+        </div>
 
-    <button onclick="setCategory('Italiaans', this)">
-        🇮🇹 Italiaans
-    </button>
+        <div class="nav-links">
+            <a href="#recepten">Recepten</a>
+            <a href="#over">Over ons</a>
+        </div>
 
-    <button onclick="setCategory('Salades', this)">
-        🥗 Salades
-    </button>
+    </div>
 
-    <button onclick="setCategory('Vis', this)">
-        🐟 Vis
-    </button>
+</nav>
 
-    <button onclick="setCategory('Kip', this)">
-        🍗 Kip
-    </button>
+<main id="recepten">
 
-    <button onclick="setCategory('Vegetarisch', this)">
-        🥦 Vegetarisch
-    </button>
+    <h2 class="section-title">
+        Recepten
+    </h2>
 
-    <button onclick="setCategory('Ontbijt', this)">
-        🍳 Ontbijt
-    </button>
+    <p class="section-description">
+        Zoek een gerecht of kies een categorie.
+    </p>
 
-    <button onclick="setCategory('Pasta', this)">
-        🍝 Pasta
-    </button>
+    <div class="search">
 
-</div>
+        <span>🔎</span>
 
-<main class="container">
+        <input
+            id="search"
+            type="text"
+            placeholder="Zoek naar pasta, salade, Jamie Oliver..."
+            oninput="renderRecipes()"
+        >
 
-<div id="recipeGrid" class="recipe-grid"></div>
+    </div>
 
-<div id="noResults" class="no-results" style="display:none;">
-    😕 Geen recepten gevonden.
-</div>
+    <div class="categories">
+
+        <button
+            class="category active"
+            onclick="setCategory('Alles', this)">
+            Alles
+        </button>
+
+        <button
+            class="category"
+            onclick="setCategory('Italiaans', this)">
+            🇮🇹 Italiaans
+        </button>
+
+        <button
+            class="category"
+            onclick="setCategory('Salades', this)">
+            🥗 Salades
+        </button>
+
+        <button
+            class="category"
+            onclick="setCategory('Vis', this)">
+            🐟 Vis
+        </button>
+
+        <button
+            class="category"
+            onclick="setCategory('Kip', this)">
+            🍗 Kip
+        </button>
+
+        <button
+            class="category"
+            onclick="setCategory('Vegetarisch', this)">
+            🥦 Vegetarisch
+        </button>
+
+        <button
+            class="category"
+            onclick="setCategory('Ontbijt', this)">
+            🍳 Ontbijt
+        </button>
+
+        <button
+            class="category"
+            onclick="setCategory('Pasta', this)">
+            🍝 Pasta
+        </button>
+
+    </div>
+
+    <div class="selects">
+
+        <div class="select-box">
+
+            👨‍🍳 Chef:
+
+            <select id="chef" onchange="renderRecipes()">
+
+                <option value="Alles">
+                    Alle chefs
+                </option>
+
+                <option value="Jamie Oliver">
+                    Jamie Oliver
+                </option>
+
+                <option value="Gordon Ramsay">
+                    Gordon Ramsay
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="select-box">
+
+            🔥 Maximaal:
+
+            <select id="maxKcal" onchange="renderRecipes()">
+
+                <option value="400">400 kcal</option>
+                <option value="350">350 kcal</option>
+                <option value="300">300 kcal</option>
+                <option value="250">250 kcal</option>
+                <option value="200">200 kcal</option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <div id="recipeGrid" class="recipe-grid"></div>
+
+    <div id="noResults" class="no-results">
+
+        <h2>😕 Geen recepten gevonden</h2>
+
+        <p>
+            Probeer een andere zoekterm of categorie.
+        </p>
+
+    </div>
+
+    <div class="info-box" id="over">
+
+        <h2>🥗 Over FitFood Recipes</h2>
+
+        <p>
+            FitFood Recipes is een overzicht van echte recepten
+            van bekende chefs. Je kunt recepten zoeken en filteren
+            op categorie, chef en maximaal aantal kilocalorieën.
+        </p>
+
+        <p>
+            De knop bij een recept opent de oorspronkelijke
+            receptenpagina van de chef.
+        </p>
+
+    </div>
 
 </main>
 
 <footer>
 
-    <p>🥗 FitFood Recipes</p>
+    <strong>🥗 FitFood Recipes</strong>
 
     <p>
-        Deze website verzamelt verwijzingen naar originele recepten.
-        De volledige recepten staan bij de oorspronkelijke bron.
+        Recepten en receptnamen zijn afkomstig van hun
+        oorspronkelijke makers.
+    </p>
+
+    <p>
+        <a
+            href="https://www.jamieoliver.com/recipes/course/quick-healthy/"
+            target="_blank">
+            Jamie Oliver — Quick & Healthy recepten
+        </a>
     </p>
 
 </footer>
 
 <script>
 
+/* =========================================
+   RECEPTEN
+   ========================================= */
+
 const recipes = [
 
     {
-        name: "Warm Lentil Salad",
+        name: "Warm lentil salad",
         chef: "Jamie Oliver",
         category: "Salades",
-        kcal: 350,
+        kcal: 400,
+        time: "9 min",
         emoji: "🥗",
-        url: "https://www.jamieoliver.com/recipes/vegetables/warm-lentil-salad/"
+
+        url: "https://www.jamieoliver.com/recipes/lentil/warm-lentil-salad/"
     },
 
     {
-        name: "Sardines on Toast & Tomato Salad",
-        chef: "Jamie Oliver",
-        category: "Salades",
-        kcal: 360,
-        emoji: "🐟",
-        url: "https://www.jamieoliver.com/"
-    },
-
-    {
-        name: "Supergrains Mackerel Salad",
-        chef: "Jamie Oliver",
-        category: "Salades",
-        kcal: 390,
-        emoji: "🥗",
-        url: "https://www.jamieoliver.com/"
-    },
-
-    {
-        name: "Seared Tuna Kimchi Bowl",
-        chef: "Jamie Oliver",
-        category: "Vis",
-        kcal: 390,
-        emoji: "🐟",
-        url: "https://www.jamieoliver.com/"
-    },
-
-    {
-        name: "Easy Prawn Curry",
-        chef: "Jamie Oliver",
-        category: "Vis",
-        kcal: 390,
-        emoji: "🍤",
-        url: "https://www.jamieoliver.com/"
-    },
-
-    {
-        name: "Matcha & Kefir Smoothie",
-        chef: "Jamie Oliver",
-        category: "Ontbijt",
-        kcal: 250,
-        emoji: "🥤",
-        url: "https://www.jamieoliver.com/"
-    },
-
-    {
-        name: "Veggie Cobb-style Salad",
-        chef: "Jamie Oliver",
-        category: "Vegetarisch",
-        kcal: 380,
-        emoji: "🥗",
-        url: "https://www.jamieoliver.com/"
-    },
-
-    {
-        name: "Healthy One-Cup Pancakes",
-        chef: "Jamie Oliver",
-        category: "Ontbijt",
-        kcal: 350,
-        emoji: "🥞",
-        url: "https://www.jamieoliver.com/"
-    },
-
-    {
-        name: "Chicken & Berry Grain Bowl",
+        name: "Chicken & berry grain bowl",
         chef: "Jamie Oliver",
         category: "Kip",
         kcal: 400,
+        time: "21 min",
         emoji: "🍗",
-        url: "https://www.jamieoliver.com/"
+
+        url: "https://www.jamieoliver.com/recipes/chicken/chicken-berry-grain-bowl/"
     },
 
     {
-        name: "Aubergine Massaman Curry",
+        name: "Supergrains mackerel salad",
+        chef: "Jamie Oliver",
+        category: "Salades",
+        kcal: 400,
+        time: "20 min",
+        emoji: "🐟",
+
+        url: "https://www.jamieoliver.com/recipes/fish/supergrains-mackerel-salad/"
+    },
+
+    {
+        name: "Sardines on toast & tomato salad",
+        chef: "Jamie Oliver",
+        category: "Salades",
+        kcal: 400,
+        time: "11 min",
+        emoji: "🐟",
+
+        url: "https://www.jamieoliver.com/recipes/fish/sardines-on-toast-tomato-salad/"
+    },
+
+    {
+        name: "Easy prawn curry",
+        chef: "Jamie Oliver",
+        category: "Vis",
+        kcal: 400,
+        time: "10 min",
+        emoji: "🍤",
+
+        url: "https://www.jamieoliver.com/recipes/fish/easy-prawn-curry/"
+    },
+
+    {
+        name: "Seared tuna kimchi bowl",
+        chef: "Jamie Oliver",
+        category: "Vis",
+        kcal: 400,
+        time: "13 min",
+        emoji: "🐟",
+
+        url: "https://www.jamieoliver.com/recipes/fish/seared-tuna-kimchi-bowl/"
+    },
+
+    {
+        name: "Healthy one-cup pancakes",
+        chef: "Jamie Oliver",
+        category: "Ontbijt",
+        kcal: 400,
+        time: "18 min",
+        emoji: "🥞",
+
+        url: "https://www.jamieoliver.com/recipes/breakfast/healthy-one-cup-pancakes/"
+    },
+
+    {
+        name: "Veggie Cobb-style salad",
         chef: "Jamie Oliver",
         category: "Vegetarisch",
-        kcal: 390,
+        kcal: 400,
+        time: "25 min",
+        emoji: "🥗",
+
+        url: "https://www.jamieoliver.com/recipes/vegetables/veggie-cobb-style-salad/"
+    },
+
+    {
+        name: "Speedy cod curry",
+        chef: "Jamie Oliver",
+        category: "Vis",
+        kcal: 400,
+        time: "15 min",
+        emoji: "🐟",
+
+        url: "https://www.jamieoliver.com/recipes/fish/speedy-cod-curry/"
+    },
+
+    {
+        name: "Aubergine massaman curry",
+        chef: "Jamie Oliver",
+        category: "Vegetarisch",
+        kcal: 400,
+        time: "30 min",
         emoji: "🍆",
-        url: "https://www.jamieoliver.com/"
+
+        url: "https://www.jamieoliver.com/recipes/vegetables/aubergine-massaman-curry/"
     },
 
     {
-        name: "Romesco Cauliflower",
+        name: "Veggie spiced rice",
         chef: "Jamie Oliver",
         category: "Vegetarisch",
-        kcal: 350,
+        kcal: 400,
+        time: "15 min",
+        emoji: "🍚",
+
+        url: "https://www.jamieoliver.com/recipes/rice/veggie-spiced-rice/"
+    },
+
+    {
+        name: "Courgette, chickpea & pasta salad",
+        chef: "Jamie Oliver",
+        category: "Pasta",
+        kcal: 400,
+        time: "25 min",
+        emoji: "🍝",
+
+        url: "https://www.jamieoliver.com/recipes/pasta/courgette-chickpea-pasta-salad/"
+    },
+
+    {
+        name: "Veggie Caesar salad",
+        chef: "Jamie Oliver",
+        category: "Salades",
+        kcal: 400,
+        time: "20 min",
+        emoji: "🥗",
+
+        url: "https://www.jamieoliver.com/recipes/vegetables/veggie-caesar-salad/"
+    },
+
+    {
+        name: "Matcha & kefir smoothie",
+        chef: "Jamie Oliver",
+        category: "Ontbijt",
+        kcal: 400,
+        time: "5 min",
+        emoji: "🥤",
+
+        url: "https://www.jamieoliver.com/recipes/drinks/matcha-kefir-smoothie/"
+    },
+
+    {
+        name: "Quick veggie curry",
+        chef: "Jamie Oliver",
+        category: "Vegetarisch",
+        kcal: 400,
+        time: "40 min",
         emoji: "🥦",
-        url: "https://www.jamieoliver.com/"
+
+        url: "https://www.jamieoliver.com/recipes/vegetables/quick-veggie-curry/"
     },
 
     {
-        name: "Sriracha Corn",
+        name: "Sweet potato & sweetcorn pancakes",
+        chef: "Jamie Oliver",
+        category: "Ontbijt",
+        kcal: 400,
+        time: "20 min",
+        emoji: "🥞",
+
+        url: "https://www.jamieoliver.com/recipes/vegetables/sweet-potato-sweetcorn-pancakes/"
+    },
+
+    {
+        name: "Sesame seared salmon",
+        chef: "Jamie Oliver",
+        category: "Vis",
+        kcal: 400,
+        time: "21 min",
+        emoji: "🐟",
+
+        url: "https://www.jamieoliver.com/recipes/fish/sesame-seared-salmon/"
+    },
+
+    {
+        name: "Buddy's super veggie burgers",
         chef: "Jamie Oliver",
         category: "Vegetarisch",
-        kcal: 220,
-        emoji: "🌽",
-        url: "https://www.jamieoliver.com/"
+        kcal: 400,
+        time: "15 min",
+        emoji: "🍔",
+
+        url: "https://www.jamieoliver.com/recipes/vegetables/buddys-super-veggie-burgers/"
     }
 
 ];
 
+
+/* =========================================
+   FAVORIETEN
+   ========================================= */
+
+let favorites =
+    JSON.parse(localStorage.getItem("fitfoodFavorites")) || [];
+
+
+/* =========================================
+   CATEGORIE
+   ========================================= */
+
 let selectedCategory = "Alles";
 
-function displayRecipes() {
 
-    const grid = document.getElementById("recipeGrid");
-    const noResults = document.getElementById("noResults");
+function setCategory(category, button) {
 
-    const searchText =
-        document.getElementById("search").value.toLowerCase();
+    selectedCategory = category;
+
+    document
+        .querySelectorAll(".category")
+        .forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+    button.classList.add("active");
+
+    renderRecipes();
+}
+
+
+/* =========================================
+   FAVORIET TOEVOEGEN
+   ========================================= */
+
+function toggleFavorite(name) {
+
+    if (favorites.includes(name)) {
+
+        favorites =
+            favorites.filter(item => item !== name);
+
+    } else {
+
+        favorites.push(name);
+
+    }
+
+    localStorage.setItem(
+        "fitfoodFavorites",
+        JSON.stringify(favorites)
+    );
+
+    renderRecipes();
+}
+
+
+/* =========================================
+   RECEPTEN TONEN
+   ========================================= */
+
+function renderRecipes() {
+
+    const grid =
+        document.getElementById("recipeGrid");
+
+    const noResults =
+        document.getElementById("noResults");
+
+    const search =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase();
+
+    const chef =
+        document.getElementById("chef").value;
+
+    const maxKcal =
+        Number(document.getElementById("maxKcal").value);
+
 
     grid.innerHTML = "";
 
-    const filtered = recipes.filter(recipe => {
 
-        const matchesCategory =
-            selectedCategory === "Alles" ||
-            recipe.category === selectedCategory;
+    const filtered =
+        recipes.filter(recipe => {
 
-        const matchesSearch =
-            recipe.name.toLowerCase().includes(searchText) ||
-            recipe.chef.toLowerCase().includes(searchText) ||
-            recipe.category.toLowerCase().includes(searchText);
+            const searchMatch =
+                recipe.name
+                    .toLowerCase()
+                    .includes(search) ||
 
-        return matchesCategory &&
-               matchesSearch &&
-               recipe.kcal <= 400;
+                recipe.chef
+                    .toLowerCase()
+                    .includes(search) ||
 
-    });
+                recipe.category
+                    .toLowerCase()
+                    .includes(search);
+
+
+            const categoryMatch =
+                selectedCategory === "Alles" ||
+                recipe.category === selectedCategory;
+
+
+            const chefMatch =
+                chef === "Alles" ||
+                recipe.chef === chef;
+
+
+            const kcalMatch =
+                recipe.kcal <= maxKcal;
+
+
+            return (
+                searchMatch &&
+                categoryMatch &&
+                chefMatch &&
+                kcalMatch
+            );
+
+        });
+
 
     if (filtered.length === 0) {
+
         noResults.style.display = "block";
+
         return;
+
     }
+
 
     noResults.style.display = "none";
 
+
     filtered.forEach(recipe => {
 
-        const card = document.createElement("article");
+        const card =
+            document.createElement("article");
 
         card.className = "recipe";
+
+
+        const isFavorite =
+            favorites.includes(recipe.name);
+
 
         card.innerHTML = `
 
@@ -422,60 +933,77 @@ function displayRecipes() {
 
             <div class="recipe-content">
 
-                <h2>${recipe.name}</h2>
+                <h2>
+                    ${recipe.name}
+                </h2>
 
                 <div class="chef">
                     👨‍🍳 ${recipe.chef}
                 </div>
 
-                <div>
+                <div class="tags">
+
                     <span class="tag">
                         ${recipe.category}
                     </span>
+
+                    <span class="tag">
+                        ≤ 400 kcal
+                    </span>
+
                 </div>
 
                 <div class="info">
-                    <span>🔥 ${recipe.kcal} kcal</span>
-                    <span>≤ 400 kcal</span>
+
+                    <span>
+                        ⏱️ ${recipe.time}
+                    </span>
+
+                    <span>
+                        🔥 ${recipe.kcal} kcal
+                    </span>
+
                 </div>
 
-                <a href="${recipe.url}" target="_blank">
-                    Bekijk origineel recept →
-                </a>
+                <div class="buttons">
+
+                    <a
+                        class="recipe-link"
+                        href="${recipe.url}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Bekijk recept →
+                    </a>
+
+                    <button
+                        class="favorite ${isFavorite ? "saved" : ""}"
+                        onclick="toggleFavorite(${JSON.stringify(recipe.name)})"
+                    >
+                        ${isFavorite ? "❤️" : "♡"}
+                    </button>
+
+                </div>
 
             </div>
         `;
 
+
         grid.appendChild(card);
 
     });
+
 }
 
-function setCategory(category, button) {
 
-    selectedCategory = category;
+/* =========================================
+   START
+   ========================================= */
 
-    document
-        .querySelectorAll(".categories button")
-        .forEach(btn => btn.classList.remove("active"));
-
-    button.classList.add("active");
-
-    displayRecipes();
-}
-
-function filterRecipes() {
-    displayRecipes();
-}
-
-displayRecipes();
+renderRecipes();
 
 </script>
 
 </body>
 </html>
 ```
-
-**Belangrijk:** ik heb bij sommige recepten bewust geen specifieke kcal-waarde als geverifieerd feit ingevuld. De officiële Jamie Oliver-site legt uit dat voedingswaarden afhankelijk zijn van onder andere portiegrootte en berekeningsmethode.
-
-De volgende stap kan zijn dat we de website **veel mooier maken**, met echte receptfoto's, een recept-detailvenster, een favorietenfunctie en meerdere chefs.
