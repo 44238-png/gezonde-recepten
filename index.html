@@ -8,6 +8,7 @@
 <title>FitFood Recipes</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -19,12 +20,149 @@ body {
     color: #17251c;
 }
 
-/* HEADER */
+/* =========================
+   ACCOUNT SCHERM
+========================= */
+
+#accountScreen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #0b7a45, #19a463);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5000;
+    padding: 20px;
+}
+
+.account-box {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 15px 50px rgba(0,0,0,.25);
+}
+
+.account-logo {
+    text-align: center;
+    font-size: 65px;
+}
+
+.account-box h1 {
+    text-align: center;
+    margin: 5px 0;
+    color: #0b7a45;
+}
+
+.account-subtitle {
+    text-align: center;
+    color: #65736a;
+    margin-bottom: 25px;
+}
+
+.account-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.account-tab {
+    flex: 1;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    background: #edf3ef;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.account-tab.active {
+    background: #0b7a45;
+    color: white;
+}
+
+.account-form {
+    display: none;
+}
+
+.account-form.active {
+    display: block;
+}
+
+.account-form label {
+    display: block;
+    margin-top: 13px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.account-form input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccd5ce;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+.account-form input:focus {
+    border-color: #0b7a45;
+}
+
+.account-button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    border: none;
+    border-radius: 11px;
+    background: #0b7a45;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.account-button:hover {
+    background: #086238;
+}
+
+.account-message {
+    min-height: 22px;
+    margin-top: 14px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.account-note {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+}
+
+/* =========================
+   HEADER
+========================= */
+
 header {
     background: linear-gradient(135deg, #0b7a45, #19a463);
     color: white;
-    padding: 28px 20px;
+    padding: 20px;
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.header-title {
     text-align: center;
+    flex: 1;
 }
 
 header h1 {
@@ -33,1541 +171,26 @@ header h1 {
 }
 
 header p {
-    margin: 8px 0 0;
+    margin: 7px 0 0;
     opacity: .9;
 }
 
-/* SEARCH */
-.search-area {
-    max-width: 1100px;
-    margin: 25px auto 10px;
-    padding: 0 20px;
-}
-
-.search {
-    width: 100%;
-    padding: 15px 18px;
-    border: none;
-    border-radius: 14px;
-    font-size: 17px;
-    box-shadow: 0 3px 12px rgba(0,0,0,.08);
-    outline: none;
-}
-
-/* FILTERS */
-.filters {
-    max-width: 1100px;
-    margin: auto;
-    padding: 15px 20px;
-}
-
-.filters h3 {
-    margin-bottom: 10px;
-}
-
-.categories {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.category {
-    border: none;
-    padding: 10px 15px;
-    border-radius: 999px;
-    background: white;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.category:hover {
-    background: #dff5e8;
-}
-
-.category.active {
-    background: #0b7a45;
-    color: white;
-}
-
-.options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 18px;
-}
-
-select {
-    padding: 11px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    background: white;
-}
-
-/* FAVORIETEN */
-.favorites-section {
-    max-width: 1100px;
-    margin: 15px auto 30px;
-    padding: 0 20px;
-}
-
-.favorites-box {
-    background: linear-gradient(135deg, #fff8d8, #fffdf0);
-    border: 2px solid #f2d66b;
-    border-radius: 20px;
-    padding: 22px;
-}
-
-.favorites-title {
+.user-area {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 10px;
-    flex-wrap: wrap;
 }
 
-.favorites-title h2 {
-    margin: 0;
-    color: #7b5d00;
-}
-
-.favorite-count {
-    background: #f2d66b;
-    color: #5e4900;
-    padding: 7px 12px;
-    border-radius: 999px;
-    font-weight: bold;
-}
-
-.favorites-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 15px;
-    margin-top: 18px;
-}
-
-.favorite-card {
-    background: white;
-    border-radius: 15px;
-    padding: 15px;
-    box-shadow: 0 3px 10px rgba(0,0,0,.07);
-}
-
-.favorite-card-icon {
-    font-size: 42px;
-}
-
-.favorite-card h3 {
-    margin: 7px 0;
-}
-
-.favorite-card p {
-    color: #65736a;
-    font-size: 14px;
-}
-
-.favorite-actions {
-    display: flex;
-    gap: 7px;
-    margin-top: 10px;
-}
-
-.small-view,
-.remove-favorite {
-    border: none;
-    padding: 9px 11px;
-    border-radius: 9px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.small-view {
-    background: #0b7a45;
-    color: white;
-    flex: 1;
-}
-
-.remove-favorite {
-    background: #ffe8ec;
-    color: #d72d4b;
-}
-
-.no-favorites {
-    color: #756b43;
-    margin: 15px 0 0;
-}
-
-/* RECIPES */
-main {
-    max-width: 1100px;
-    margin: auto;
-    padding: 10px 20px 50px;
-}
-
-.section-title {
-    margin: 15px 0;
-    font-size: 28px;
-}
-
-.recipe-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.card {
-    background: white;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 5px 18px rgba(0,0,0,.08);
-    transition: .2s;
-}
-
-.card:hover {
-    transform: translateY(-4px);
-}
-
-.card-top {
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 70px;
-    background: linear-gradient(135deg, #dff8e9, #bceccc);
-}
-
-.card-content {
-    padding: 18px;
-}
-
-.card h2 {
-    margin: 0 0 8px;
-    font-size: 21px;
-}
-
-.meta {
-    color: #65736a;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin: 10px 0;
-}
-
-.tag {
-    background: #eaf6ef;
-    color: #0b7a45;
-    padding: 5px 9px;
-    border-radius: 8px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.buttons {
-    display: flex;
-    gap: 8px;
-    margin-top: 15px;
-}
-
-.view-btn,
-.favorite-btn {
-    border: none;
+.user-name {
+    background: rgba(255,255,255,.18);
+    padding: 9px 13px;
     border-radius: 10px;
-    padding: 11px 12px;
-    cursor: pointer;
     font-weight: bold;
 }
 
-.view-btn {
-    flex: 1;
-    background: #0b7a45;
-    color: white;
-}
-
-.favorite-btn {
-    background: #ffe8ec;
-    color: #d72d4b;
-    width: 45px;
-    font-size: 18px;
-}
-
-/* EMPTY */
-.empty {
-    text-align: center;
-    padding: 60px 20px;
-    display: none;
-}
-
-/* DETAIL */
-.detail-page {
-    position: fixed;
-    inset: 0;
-    background: #f3f7f4;
-    z-index: 1000;
-    overflow-y: auto;
-    display: none;
-}
-
-.detail-header {
-    background: linear-gradient(135deg, #0b7a45, #19a463);
-    color: white;
-    padding: 20px;
-}
-
-.back-btn {
+.logout-button {
     border: none;
     background: white;
     color: #0b7a45;
-    padding: 10px 15px;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.detail-content {
-    max-width: 900px;
-    margin: 25px auto;
-    padding: 0 20px 50px;
-}
-
-.hero {
-    background: white;
-    border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0 5px 18px rgba(0,0,0,.08);
-}
-
-.hero-icon {
-    font-size: 90px;
-}
-
-.hero h1 {
-    font-size: 35px;
-    margin: 10px 0;
-}
-
-.detail-meta {
-    color: #65736a;
-}
-
-.info-row {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 18px;
-}
-
-.info {
-    background: #eaf6ef;
-    padding: 9px 14px;
-    border-radius: 10px;
-    font-weight: bold;
-}
-
-.detail-section {
-    background: white;
-    margin-top: 20px;
-    padding: 25px;
-    border-radius: 18px;
-    box-shadow: 0 5px 18px rgba(0,0,0,.06);
-}
-
-.detail-section h2 {
-    color: #0b7a45;
-}
-
-.ingredients li,
-.steps li {
-    margin: 10px 0;
-}
-
-.source-btn {
-    display: inline-block;
-    margin-top: 10px;
-    background: #17251c;
-    color: white;
-    text-decoration: none;
-    padding: 12px 16px;
-    border-radius: 10px;
-    font-weight: bold;
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 25px;
-    background: #17251c;
-    color: white;
-    font-size: 14px;
-}
-
-/* MOBILE */
-@media(max-width:600px) {
-
-    header h1 {
-        font-size: 29px;
-    }
-
-    .hero h1 {
-        font-size: 27px;
-    }
-
-    .card-top {
-        height: 130px;
-    }
-
-}
-</style>
-</head>
-
-<body>
-
-<header>
-    <h1>🥗 FITFOOD RECIPES</h1>
-    <p>Ontdek echte recepten van bekende chefs</p>
-</header>
-
-
-<!-- ZOEKEN -->
-
-<div class="search-area">
-
-    <input
-        id="search"
-        class="search"
-        type="text"
-        placeholder="🔎 Zoek een recept..."
-        oninput="renderRecipes()"
-    >
-
-</div>
-
-
-<!-- CATEGORIEËN -->
-
-<section class="filters">
-
-    <h3>Categorie</h3>
-
-    <div class="categories">
-
-        <button class="category active"
-            onclick="setCategory('Alles', this)">
-            Alles
-        </button>
-
-        <button class="category"
-            onclick="setCategory('Salades', this)">
-            🥗 Salades
-        </button>
-
-        <button class="category"
-            onclick="setCategory('Kip', this)">
-            🍗 Kip
-        </button>
-
-        <button class="category"
-            onclick="setCategory('Vis', this)">
-            🐟 Vis
-        </button>
-
-        <button class="category"
-            onclick="setCategory('Vegetarisch', this)">
-            🥦 Vegetarisch
-        </button>
-
-        <button class="category"
-            onclick="setCategory('Ontbijt', this)">
-            🥞 Ontbijt
-        </button>
-
-        <button class="category"
-            onclick="setCategory('Pasta', this)">
-            🍝 Pasta
-        </button>
-
-    </div>
-
-
-    <div class="options">
-
-        <label>
-            Chef:
-
-            <select
-                id="chefFilter"
-                onchange="renderRecipes()">
-
-                <option value="Alles">
-                    Alle chefs
-                </option>
-
-                <option value="Jamie Oliver">
-                    Jamie Oliver
-                </option>
-
-            </select>
-
-        </label>
-
-
-        <label>
-            Calorieën:
-
-            <select
-                id="kcalFilter"
-                onchange="renderRecipes()">
-
-                <option value="400">
-                    Max. 400 kcal indien bekend
-                </option>
-
-                <option value="300">
-                    Max. 300 kcal indien bekend
-                </option>
-
-                <option value="200">
-                    Max. 200 kcal indien bekend
-                </option>
-
-            </select>
-
-        </label>
-
-    </div>
-
-</section>
-
-
-<!-- ⭐ FAVORIETE GERECHTEN -->
-
-<section class="favorites-section">
-
-    <div class="favorites-box">
-
-        <div class="favorites-title">
-
-            <h2>
-                ⭐ Mijn favoriete gerechten
-            </h2>
-
-            <span
-                id="favoriteCount"
-                class="favorite-count">
-                0 favorieten
-            </span>
-
-        </div>
-
-
-        <div
-            id="favoritesGrid"
-            class="favorites-grid">
-        </div>
-
-
-        <p
-            id="noFavorites"
-            class="no-favorites">
-
-            Je hebt nog geen favoriete gerechten.
-            Klik op ❤️ bij een gerecht om het hier toe te voegen.
-
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- ALLE RECEPTEN -->
-
-<main>
-
-    <h2 class="section-title">
-        🍽️ Alle gerechten
-    </h2>
-
-    <div
-        id="recipeGrid"
-        class="recipe-grid">
-    </div>
-
-
-    <div
-        id="empty"
-        class="empty">
-
-        <h2>
-            Geen recepten gevonden 😕
-        </h2>
-
-        <p>
-            Probeer een andere zoekterm of categorie.
-        </p>
-
-    </div>
-
-</main>
-
-
-<footer>
-    FITFOOD RECIPES • Receptnamen en bronnen zijn van de betreffende chefs.
-</footer>
-
-
-<!-- RECEPT DETAILPAGINA -->
-
-<div
-    id="detailPage"
-    class="detail-page">
-
-    <div class="detail-header">
-
-        <button
-            class="back-btn"
-            onclick="closeRecipe()">
-
-            ← Terug naar recepten
-
-        </button>
-
-    </div>
-
-
-    <div
-        id="detailContent"
-        class="detail-content">
-    </div>
-
-</div>
-
-
-<script>
-
-/* ==========================================
-   RECEPTEN
-========================================== */
-
-const recipes = [
-
-    {
-        id: 1,
-
-        title: "Warm lentil salad",
-
-        chef: "Jamie Oliver",
-
-        category: "Salades",
-
-        icon: "🥗",
-
-        time: "9 min",
-
-        kcal: null,
-
-        description:
-        "Een warme salade met linzen en een frisse dressing.",
-
-        ingredients: [
-            "Linzen",
-            "Tomaten",
-            "Sla",
-            "Verse kruiden",
-            "Dressing",
-            "Mozzarella"
-        ],
-
-        steps: [
-            "Bereid de groenten en kruiden.",
-            "Verwarm de linzen.",
-            "Maak de dressing.",
-            "Meng de ingrediënten.",
-            "Serveer de salade warm."
-        ],
-
-        source:
-        "https://www.jamieoliver.com/recipes/lentil/warm-lentil-salad/"
-    },
-
-
-    {
-        id: 2,
-
-        title: "Chicken & berry grain bowl",
-
-        chef: "Jamie Oliver",
-
-        category: "Kip",
-
-        icon: "🍗",
-
-        time: "21 min",
-
-        kcal: null,
-
-        description:
-        "Een kleurrijke bowl met kip, granen en bessen.",
-
-        ingredients: [
-            "Kip",
-            "Granen",
-            "Bessen",
-            "Groenten",
-            "Dressing"
-        ],
-
-        steps: [
-            "Bereid de kip.",
-            "Bereid de granen.",
-            "Snijd de groenten.",
-            "Doe alles in een bowl.",
-            "Werk af met de dressing."
-        ],
-
-        source:
-        "https://www.jamieoliver.com/recipes/chicken/chicken-and-berry-grain-bowl/"
-    },
-
-
-    {
-        id: 3,
-
-        title: "Supergrains mackerel salad",
-
-        chef: "Jamie Oliver",
-
-        category: "Vis",
-
-        icon: "🐟",
-
-        time: "20 min",
-
-        kcal: null,
-
-        description:
-        "Een salade met makreel en granen.",
-
-        ingredients: [
-            "Makreel",
-            "Granen",
-            "Saladegroenten",
-            "Kruiden",
-            "Dressing"
-        ],
-
-        steps: [
-            "Bereid de granen.",
-            "Bereid de makreel.",
-            "Maak de salade.",
-            "Voeg de makreel toe.",
-            "Serveer alles samen."
-        ],
-
-        source:
-        "https://www.jamieoliver.com/recipes/fish/supergrains-mackerel-salad/"
-    },
-
-
-    {
-        id: 4,
-
-        title: "Healthy one-cup pancakes",
-
-        chef: "Jamie Oliver",
-
-        category: "Ontbijt",
-
-        icon: "🥞",
-
-        time: "18 min",
-
-        kcal: null,
-
-        description:
-        "Een eenvoudig pannenkoekenrecept uit Jamie Oliver's gezonde recepten.",
-
-        ingredients: [
-            "Pannenkoekingrediënten",
-            "Fruit",
-            "Topping naar keuze"
-        ],
-
-        steps: [
-            "Maak het beslag.",
-            "Verwarm de pan.",
-            "Bak de pannenkoeken.",
-            "Serveer met je topping."
-        ],
-
-        source:
-        "https://www.jamieoliver.com/recipes/breakfast/healthy-one-cup-pancakes/"
-    },
-
-
-    {
-        id: 5,
-
-        title: "Sardines on toast & tomato salad",
-
-        chef: "Jamie Oliver",
-
-        category: "Vis",
-
-        icon: "🐟",
-
-        time: "11 min",
-
-        kcal: null,
-
-        description:
-        "Sardines op toast met een frisse tomatensalade.",
-
-        ingredients: [
-            "Sardines",
-            "Brood",
-            "Tomaten",
-            "Verse kruiden"
-        ],
-
-        steps: [
-            "Maak de tomatensalade.",
-            "Rooster het brood.",
-            "Bereid de sardines.",
-            "Serveer alles samen."
-        ],
-
-        source:
-        "https://www.jamieoliver.com/recipes/fish/sardines-on-toast-tomato-salad/"
-    },
-
-
-    {
-        id: 6,
-
-        title: "Seared tuna kimchi bowl",
-
-        chef: "Jamie Oliver",
-
-        category: "Vis",
-
-        icon: "🍚",
-
-        time: "13 min",
-
-        kcal: null,
-
-        description:
-        "Een snelle bowl met tonijn, rijst en kimchi.",
-
-        ingredients: [
-            "Tonijn",
-            "Rijst",
-            "Kimchi",
-            "Groenten"
-        ],
-
-        steps: [
-            "Bereid de rijst.",
-            "Bak de tonijn.",
-            "Bereid de groenten.",
-            "Voeg alles samen in een bowl."
-        ],
-
-        source:
-        "https://www.jamieoliver.com/recipes/fish/seared-tuna-kimchi-bowl/"
-    },
-
-
-    {
-        id: 7,
-
-        title: "Veggie Cobb-style salad",
-
-        chef: "Jamie Oliver",
-
-        category: "Vegetarisch",
-
-        icon: "🥦",
-
-        time: "25 min",
-
-        kcal: null,
-
-        description:
-        "Een vegetarische salade geïnspireerd op een Cobb salad.",
-
-        ingredients: [
-            "Gemengde salade",
-            "Groenten",
-            "Vegetarische toppings",
-            "Dressing"
-        ],
-
-        steps: [
-            "Bereid de groenten.",
-            "Maak de saladebasis.",
-            "Voeg de toppings toe.",
-            "Maak de dressing.",
-            "Serveer alles samen."
-        ],
-
-        source:
-        "https://www.jamieoliver.com/recipes/vegetables/veggie-cobb-style-salad/"
-    },
-
-
-    {
-        id: 8,
-
-        title: "Spring soup & ricotta toast",
-
-        chef: "Jamie Oliver",
-
-        category: "Vegetarisch",
-
-        icon: "🥣",
-
-        time: "30 min",
-
-        kcal: null,
-
-        description:
-        "Een lentesoep met toast en ricotta.",
-
-        ingredients: [
-            "Lentegroenten",
-            "Bouillon",
-            "Brood",
-            "Ricotta"
-        ],
-
-        steps: [
-            "Bereid de groenten.",
-            "Maak de soep.",
-            "Rooster het brood.",
-            "Voeg ricotta toe.",
-            "Serveer samen."
-        ],
-
-        source:
-        "https://www.jamieoliver.com/recipes/vegetables/spring-soup-ricotta-toast/"
-    },
-
-
-    {
-        id: 9,
-
-        title: "Spinach & lentil fritter salad",
-
-        chef: "Jamie Oliver",
-
-        category: "Salades",
-
-        icon: "🥬",
-
-        time: "19 min",
-
-        kcal: null,
-
-        description:
-        "Een salade met spinazie en linzenfritters.",
-
-        ingredients: [
-            "Spinazie",
-            "Linzen",
-            "Saladegroenten",
-            "Kruiden"
-        ],
-
-        steps: [
-            "Maak het linzenmengsel.",
-            "Maak de fritters.",
-            "Bak de fritters.",
-            "Maak de salade.",
-            "Serveer samen."
-        ],
-
-        source:
-        "https://www.jamieoliver.com/recipes/vegetables/spinach-lentil-fritter-salad/"
-    },
-
-
-    {
-        id: 10,
-
-        title: "Zesty salmon tacos",
-
-        chef: "Jamie Oliver",
-
-        category: "Vis",
-
-        icon: "🌮",
-
-        time: "20 min",
-
-        kcal: null,
-
-        description:
-        "Frisse taco's met zalm en limoen.",
-
-        ingredients: [
-            "Zalm",
-            "Tortilla's",
-            "Groenten",
-            "Verse kruiden",
-            "Limoen"
-        ],
-
-        steps: [
-            "Bereid de zalm.",
-            "Bereid de groenten.",
-            "Verwarm de tortilla's.",
-            "Vul de taco's.",
-            "Werk af met limoen."
-        ],
-
-        source:
-        "https://www.jamieoliver.com/recipes/fish/zesty-salmon-tacos/"
-    }
-
-];
-
-
-/* ==========================================
-   FAVORIETEN UIT LOCALSTORAGE
-========================================== */
-
-let favorites =
-    JSON.parse(
-        localStorage.getItem("fitfoodFavorites")
-    ) || [];
-
-
-/* ==========================================
-   CATEGORIE
-========================================== */
-
-let selectedCategory = "Alles";
-
-
-function setCategory(category, button) {
-
-    selectedCategory = category;
-
-    document
-        .querySelectorAll(".category")
-        .forEach(btn => {
-            btn.classList.remove("active");
-        });
-
-    button.classList.add("active");
-
-    renderRecipes();
-
-}
-
-
-/* ==========================================
-   FAVORIET TOEVOEGEN / VERWIJDEREN
-========================================== */
-
-function toggleFavorite(id) {
-
-    if (favorites.includes(id)) {
-
-        favorites =
-            favorites.filter(
-                item => item !== id
-            );
-
-    } else {
-
-        favorites.push(id);
-
-    }
-
-    localStorage.setItem(
-        "fitfoodFavorites",
-        JSON.stringify(favorites)
-    );
-
-    renderRecipes();
-
-    renderFavorites();
-
-}
-
-
-/* ==========================================
-   FAVORIETEN WEERGEVEN
-========================================== */
-
-function renderFavorites() {
-
-    const grid =
-        document.getElementById(
-            "favoritesGrid"
-        );
-
-    const noFavorites =
-        document.getElementById(
-            "noFavorites"
-        );
-
-    const count =
-        document.getElementById(
-            "favoriteCount"
-        );
-
-
-    const favoriteRecipes =
-        recipes.filter(recipe =>
-            favorites.includes(recipe.id)
-        );
-
-
-    count.textContent =
-        favoriteRecipes.length === 1
-        ? "1 favoriet"
-        : favoriteRecipes.length + " favorieten";
-
-
-    grid.innerHTML = "";
-
-
-    if (favoriteRecipes.length === 0) {
-
-        noFavorites.style.display =
-            "block";
-
-        return;
-
-    }
-
-
-    noFavorites.style.display =
-        "none";
-
-
-    favoriteRecipes.forEach(recipe => {
-
-        grid.innerHTML += `
-
-            <div class="favorite-card">
-
-                <div class="favorite-card-icon">
-                    ${recipe.icon}
-                </div>
-
-                <h3>
-                    ${recipe.title}
-                </h3>
-
-                <p>
-                    ${recipe.chef}
-                    • ${recipe.time}
-                </p>
-
-                <div class="favorite-actions">
-
-                    <button
-                        class="small-view"
-                        onclick="openRecipe(${recipe.id})">
-
-                        Bekijk →
-
-                    </button>
-
-                    <button
-                        class="remove-favorite"
-                        onclick="toggleFavorite(${recipe.id})">
-
-                        ❌
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        `;
-
-    });
-
-}
-
-
-/* ==========================================
-   ALLE RECEPTEN
-========================================== */
-
-function renderRecipes() {
-
-    const grid =
-        document.getElementById(
-            "recipeGrid"
-        );
-
-    const empty =
-        document.getElementById(
-            "empty"
-        );
-
-
-    const search =
-        document
-            .getElementById("search")
-            .value
-            .toLowerCase();
-
-
-    const chef =
-        document
-            .getElementById("chefFilter")
-            .value;
-
-
-    const maxKcal =
-        Number(
-            document
-                .getElementById("kcalFilter")
-                .value
-        );
-
-
-    const filtered =
-        recipes.filter(recipe => {
-
-            const matchesSearch =
-                recipe.title
-                    .toLowerCase()
-                    .includes(search) ||
-
-                recipe.chef
-                    .toLowerCase()
-                    .includes(search) ||
-
-                recipe.category
-                    .toLowerCase()
-                    .includes(search);
-
-
-            const matchesCategory =
-                selectedCategory === "Alles" ||
-                recipe.category === selectedCategory;
-
-
-            const matchesChef =
-                chef === "Alles" ||
-                recipe.chef === chef;
-
-
-            /*
-             * Recepten zonder gecontroleerd
-             * kcal-getal blijven zichtbaar.
-             */
-
-            const matchesKcal =
-                recipe.kcal === null ||
-                recipe.kcal <= maxKcal;
-
-
-            return (
-                matchesSearch &&
-                matchesCategory &&
-                matchesChef &&
-                matchesKcal
-            );
-
-        });
-
-
-    grid.innerHTML = "";
-
-
-    filtered.forEach(recipe => {
-
-        const isFavorite =
-            favorites.includes(recipe.id);
-
-
-        const kcalText =
-            recipe.kcal === null
-            ? "kcal niet vermeld"
-            : recipe.kcal + " kcal";
-
-
-        grid.innerHTML += `
-
-            <article class="card">
-
-                <div class="card-top">
-                    ${recipe.icon}
-                </div>
-
-                <div class="card-content">
-
-                    <h2>
-                        ${recipe.title}
-                    </h2>
-
-                    <div class="meta">
-
-                        👨‍🍳 ${recipe.chef}
-
-                        <br>
-
-                        ⏱️ ${recipe.time}
-
-                    </div>
-
-
-                    <div class="tags">
-
-                        <span class="tag">
-                            ${recipe.category}
-                        </span>
-
-                        <span class="tag">
-                            ${kcalText}
-                        </span>
-
-                    </div>
-
-
-                    <p>
-                        ${recipe.description}
-                    </p>
-
-
-                    <div class="buttons">
-
-                        <button
-                            class="view-btn"
-                            onclick="openRecipe(${recipe.id})">
-
-                            Bekijk recept →
-
-                        </button>
-
-
-                        <button
-                            class="favorite-btn"
-                            onclick="toggleFavorite(${recipe.id})">
-
-                            ${isFavorite ? "❤️" : "♡"}
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-        `;
-
-    });
-
-
-    empty.style.display =
-        filtered.length === 0
-        ? "block"
-        : "none";
-
-}
-
-
-/* ==========================================
-   RECEPT OPENEN
-========================================== */
-
-function openRecipe(id) {
-
-    const recipe =
-        recipes.find(
-            item => item.id === id
-        );
-
-
-    if (!recipe) return;
-
-
-    const kcalText =
-        recipe.kcal === null
-        ? "Calorieën niet vermeld"
-        : recipe.kcal + " kcal";
-
-
-    const ingredients =
-        recipe.ingredients
-            .map(item =>
-                `<li>${item}</li>`
-            )
-            .join("");
-
-
-    const steps =
-        recipe.steps
-            .map(item =>
-                `<li>${item}</li>`
-            )
-            .join("");
-
-
-    document.getElementById(
-        "detailContent"
-    ).innerHTML = `
-
-        <div class="hero">
-
-            <div class="hero-icon">
-                ${recipe.icon}
-            </div>
-
-            <h1>
-                ${recipe.title}
-            </h1>
-
-            <div class="detail-meta">
-                Recept van ${recipe.chef}
-            </div>
-
-
-            <div class="info-row">
-
-                <div class="info">
-                    ⏱️ ${recipe.time}
-                </div>
-
-                <div class="info">
-                    🏷️ ${recipe.category}
-                </div>
-
-                <div class="info">
-                    ${kcalText}
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="detail-section">
-
-            <h2>
-                📖 Over dit recept
-            </h2>
-
-            <p>
-                ${recipe.description}
-            </p>
-
-            <p>
-                Dit is een korte samenvatting.
-                Bekijk de originele bron voor de
-                volledige ingrediënten en bereidingswijze.
-            </p>
-
-        </div>
-
-
-        <div class="detail-section">
-
-            <h2>
-                🛒 Ingrediënten — samenvatting
-            </h2>
-
-            <ul class="ingredients">
-                ${ingredients}
-            </ul>
-
-        </div>
-
-
-        <div class="detail-section">
-
-            <h2>
-                👨‍🍳 Bereiding — samenvatting
-            </h2>
-
-            <ol class="steps">
-                ${steps}
-            </ol>
-
-        </div>
-
-
-        <div class="detail-section">
-
-            <h2>
-                🌐 Originele receptpagina
-            </h2>
-
-            <p>
-                Bekijk de originele pagina voor
-                het volledige recept.
-            </p>
-
-            <a
-                class="source-btn"
-                href="${recipe.source}"
-                target="_blank"
-                rel="noopener">
-
-                Bekijk originele bron →
-
-            </a>
-
-        </div>
-
-    `;
-
-
-    document.getElementById(
-        "detailPage"
-    ).style.display = "block";
-
-
-    document.body.style.overflow =
-        "hidden";
-
-}
-
-
-/* ==========================================
-   RECEPT SLUITEN
-========================================== */
-
-function closeRecipe() {
-
-    document.getElementById(
-        "detailPage"
-    ).style.display = "none";
-
-
-    document.body.style.overflow =
-        "auto";
-
-}
-
-
-/* ==========================================
-   START
-========================================== */
-
-renderRecipes();
-
-renderFavorites();
-
-</script>
-
-</body>
-</html>
+    padding: 9px
 ```
