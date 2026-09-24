@@ -1,199 +1,2295 @@
-/* ==========================================
-   VEEL MEER CHEFS & RECEPTEN
-========================================== */
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>🥗 FitFood Recipes</title>
 
-const megaRecipes = [
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-/* NIGELLA LAWSON */
-["Romige citroenpasta","Nigella Lawson","Pasta","🍝"],
-["Kruidige kip uit de oven","Nigella Lawson","Kip","🍗"],
-["Chocoladecake","Nigella Lawson","Dessert","🍫"],
-["Ontbijt met yoghurt en fruit","Nigella Lawson","Ontbijt","🥣"],
-["Warme groentesoep","Nigella Lawson","Soep","🍲"],
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f2f8f3;
+    color:#17351f;
+}
 
-/* OTTOLENGHI */
-["Geroosterde aubergine","Ottolenghi","Vegetarisch","🍆"],
-["Kruidige couscous","Ottolenghi","Vegetarisch","🥗"],
-["Frisse kikkererwtensalade","Ottolenghi","Salades","🥗"],
-["Citroenrijst","Ottolenghi","Vegetarisch","🍚"],
-["Geroosterde bloemkool","Ottolenghi","Vegetarisch","🥦"],
+button,input,select{font:inherit}
+button{cursor:pointer}
 
-/* SERGIO HERMAN */
-["Zeebaars met groenten","Sergio Herman","Vis","🐟"],
-["Krokante aardappels","Sergio Herman","Vegetarisch","🥔"],
-["Frisse lentesalade","Sergio Herman","Salades","🥗"],
-["Kruidenpasta","Sergio Herman","Pasta","🍝"],
-["Citroendessert","Sergio Herman","Dessert","🍋"],
+/* LOGIN */
+#loginScreen{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#087638,#21b457,#91e96c);
+}
 
-/* RUDOLPH VAN VEEN */
-["Appeltaart","Rudolph van Veen","Dessert","🍎"],
-["Pannenkoeken","Rudolph van Veen","Ontbijt","🥞"],
-["Romige champignonsoep","Rudolph van Veen","Soep","🍄"],
-["Groentelasagne","Rudolph van Veen","Vegetarisch","🥦"],
-["Vanillecake","Rudolph van Veen","Dessert","🍰"],
+.loginBox{
+    width:100%;
+    max-width:440px;
+    padding:40px;
+    background:#fff;
+    border-radius:28px;
+    text-align:center;
+    box-shadow:0 25px 70px rgba(0,0,0,.25);
+}
 
-/* MILJUSCHKA */
-["Pasta met tomaat","Miljuschka","Pasta","🍝"],
-["Kip met citroen","Miljuschka","Kip","🍗"],
-["Frisse pastasalade","Miljuschka","Salades","🥗"],
-["Bananenpannenkoekjes","Miljuschka","Ontbijt","🥞"],
-["Chocoladekoekjes","Miljuschka","Dessert","🍪"],
+.loginLogo{font-size:58px}
 
-/* DONNA HAY */
-["Avocado toast","Donna Hay","Ontbijt","🥑"],
-["Kip met honing","Donna Hay","Kip","🍗"],
-["Groene salade","Donna Hay","Salades","🥗"],
-["Citroenpasta","Donna Hay","Pasta","🍋"],
-["Chocolademousse","Donna Hay","Dessert","🍫"],
+.loginBox h1{
+    margin:5px 0 8px;
+    color:#14823d;
+    font-size:36px;
+}
 
-/* JAMIE OLIVER EXTRA */
-["Pasta arrabbiata","Jamie Oliver","Pasta","🍝"],
-["Kip met rozemarijn","Jamie Oliver","Kip","🍗"],
-["Geroosterde groenten","Jamie Oliver","Vegetarisch","🥕"],
-["Tonijn met salade","Jamie Oliver","Vis","🐟"],
-["Warme linzensoep","Jamie Oliver","Soep","🍲"],
-["Fruitige ontbijtbowl","Jamie Oliver","Ontbijt","🍓"],
-["Aubergine uit de oven","Jamie Oliver","Vegetarisch","🍆"],
-["Citroenrisotto","Jamie Oliver","Vegetarisch","🍚"],
-["Verse tomatensalade","Jamie Oliver","Salades","🍅"],
-["Appelcrumble","Jamie Oliver","Dessert","🍎"],
+.loginBox p{
+    margin-bottom:25px;
+    color:#68756c;
+}
 
-/* GORDON RAMSAY EXTRA */
-["Steak met groenten","Gordon Ramsay","Kip","🥩"],
-["Zalm met kruiden","Gordon Ramsay","Vis","🐟"],
-["Pasta met knoflook","Gordon Ramsay","Pasta","🍝"],
-["Romige pompoensoep","Gordon Ramsay","Soep","🎃"],
-["Geroosterde wortels","Gordon Ramsay","Vegetarisch","🥕"],
-["Ontbijtomelet","Gordon Ramsay","Ontbijt","🍳"],
-["Warme couscoussalade","Gordon Ramsay","Salades","🥗"],
-["Chocoladetaart","Gordon Ramsay","Dessert","🍫"],
-["Krokante aardappels","Gordon Ramsay","Vegetarisch","🥔"],
-["Kipwrap","Gordon Ramsay","Kip","🌯"],
+.loginBox input{
+    width:100%;
+    padding:15px;
+    margin-bottom:12px;
+    border:2px solid #dce9df;
+    border-radius:12px;
+    outline:none;
+}
 
-/* 24KITCHEN EXTRA */
-["Pasta pesto","24Kitchen","Pasta","🍝"],
-["Kip met paprika","24Kitchen","Kip","🍗"],
-["Zalm uit de oven","24Kitchen","Vis","🐟"],
-["Broccolisalade","24Kitchen","Salades","🥦"],
-["Groentecurry","24Kitchen","Vegetarisch","🍛"],
-["Havermout met banaan","24Kitchen","Ontbijt","🍌"],
-["Aardbeiendessert","24Kitchen","Dessert","🍓"],
-["Kippensoep","24Kitchen","Soep","🍲"],
-["Groentelasagne","24Kitchen","Vegetarisch","🥦"],
-["Pasta primavera","24Kitchen","Pasta","🍝"],
+.loginBox input:focus{border-color:#20a851}
 
-/* EXTRA CHEF 1 */
-["Mediterrane salade","Nigella Lawson","Salades","🥗"],
-["Kruidige pasta","Nigella Lawson","Pasta","🍝"],
-["Gebakken zalm","Nigella Lawson","Vis","🐟"],
-["Warme chocolademelk","Nigella Lawson","Ontbijt","☕"],
-["Bananencake","Nigella Lawson","Dessert","🍌"],
+.loginButton{
+    width:100%;
+    padding:15px;
+    border:0;
+    border-radius:12px;
+    background:#168a42;
+    color:white;
+    font-weight:bold;
+}
 
-/* EXTRA CHEF 2 */
-["Kikkererwtencurry","Ottolenghi","Vegetarisch","🍛"],
-["Geroosterde wortels","Ottolenghi","Vegetarisch","🥕"],
-["Tomatensalade","Ottolenghi","Salades","🍅"],
-["Kruidenrijst","Ottolenghi","Vegetarisch","🍚"],
-["Yoghurt met fruit","Ottolenghi","Ontbijt","🥣"],
+.switchLogin{
+    margin-top:20px;
+    color:#168a42;
+    font-weight:bold;
+    cursor:pointer;
+}
 
-/* EXTRA CHEF 3 */
-["Groentequiche","Rudolph van Veen","Vegetarisch","🥧"],
-["Tomatensoep","Rudolph van Veen","Soep","🍅"],
-["Kip uit de oven","Rudolph van Veen","Kip","🍗"],
-["Pasta met groenten","Rudolph van Veen","Pasta","🍝"],
-["Brownies","Rudolph van Veen","Dessert","🍫"],
+.loginMessage{
+    min-height:25px;
+    margin-top:12px;
+    font-weight:bold;
+}
 
-/* EXTRA CHEF 4 */
-["Zomerse couscous","Miljuschka","Salades","🥗"],
-["Pasta met courgette","Miljuschka","Pasta","🍝"],
-["Krokante kip","Miljuschka","Kip","🍗"],
-["Groene smoothie","Miljuschka","Ontbijt","🥤"],
-["Cheesecake","Miljuschka","Dessert","🍰"]
+/* HEADER */
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:#fff;
+    box-shadow:0 3px 18px rgba(0,0,0,.08);
+}
+
+.nav{
+    max-width:1300px;
+    margin:auto;
+    padding:16px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.brand{
+    color:#11813b;
+    font-size:25px;
+    font-weight:900;
+}
+
+.userArea{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.userBadge{
+    padding:9px 14px;
+    border-radius:30px;
+    background:#e3f6e8;
+    color:#117b39;
+    font-weight:bold;
+}
+
+.logoutButton{
+    padding:9px 14px;
+    border:0;
+    border-radius:10px;
+    background:#17351f;
+    color:white;
+}
+
+/* HERO */
+.hero{
+    padding:65px 20px;
+    background:linear-gradient(135deg,#106e36,#23ae58);
+    color:white;
+}
+
+.heroInner{
+    max-width:1300px;
+    margin:auto;
+}
+
+.hero h2{
+    margin-bottom:18px;
+    font-size:clamp(38px,6vw,68px);
+    line-height:1.05;
+}
+
+.hero p{
+    max-width:720px;
+    font-size:20px;
+    line-height:1.6;
+}
+
+/* CONTENT */
+.container{
+    max-width:1300px;
+    margin:auto;
+    padding:35px 20px;
+}
+
+.searchBox{
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:20px;
+    background:white;
+    box-shadow:0 5px 20px rgba(0,0,0,.06);
+}
+
+.searchBox input{
+    width:100%;
+    padding:16px;
+    border:2px solid #dce8df;
+    border-radius:13px;
+    outline:none;
+}
+
+.filters{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:12px;
+    margin-bottom:30px;
+}
+
+.filters select{
+    width:100%;
+    padding:14px;
+    border:2px solid #dce8df;
+    border-radius:12px;
+    background:white;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:35px;
+}
+
+.stat{
+    padding:22px;
+    border-radius:18px;
+    background:white;
+    text-align:center;
+    box-shadow:0 4px 16px rgba(0,0,0,.05);
+}
+
+.stat strong{
+    display:block;
+    margin-bottom:5px;
+    color:#12803d;
+    font-size:32px;
+}
+
+.sectionTitle{
+    margin:30px 0 18px;
+}
+
+.sectionTitle h2{font-size:28px}
+
+/* CARDS */
+.recipeGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.recipeCard{
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    border-radius:20px;
+    background:white;
+    box-shadow:0 5px 20px rgba(0,0,0,.07);
+    transition:.2s;
+}
+
+.recipeCard:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 28px rgba(0,0,0,.12);
+}
+
+.recipeImage{
+    height:155px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#ddf6df,#f5ffe9);
+    font-size:65px;
+}
+
+.recipeBody{
+    display:flex;
+    flex:1;
+    flex-direction:column;
+    padding:18px;
+}
+
+.recipeBody h3{
+    margin-bottom:8px;
+    font-size:19px;
+    line-height:1.25;
+}
+
+.recipeChef{
+    margin-bottom:10px;
+    color:#6b786f;
+    font-size:14px;
+}
+
+.recipeTags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-bottom:15px;
+}
+
+.tag{
+    padding:5px 9px;
+    border-radius:20px;
+    background:#e7f7e9;
+    color:#147b39;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.recipeActions{
+    display:flex;
+    gap:8px;
+    margin-top:auto;
+}
+
+.viewButton{
+    flex:1;
+    padding:11px;
+    border:0;
+    border-radius:10px;
+    background:#168a42;
+    color:white;
+    font-weight:bold;
+}
+
+.favoriteButton{
+    width:46px;
+    border:0;
+    border-radius:10px;
+    background:#f0f3f0;
+    font-size:20px;
+}
+
+.favoriteButton.active{background:#ffe3e3}
+
+.empty{
+    padding:45px 20px;
+    border-radius:20px;
+    background:white;
+    color:#718078;
+    text-align:center;
+}
+
+/* MODAL */
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:500;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,.65);
+}
+
+.modal.show{display:flex}
+
+.modalBox{
+    position:relative;
+    width:100%;
+    max-width:720px;
+    max-height:90vh;
+    overflow:auto;
+    padding:32px;
+    border-radius:25px;
+    background:white;
+}
+
+.closeModal{
+    position:absolute;
+    top:15px;
+    right:15px;
+    width:40px;
+    height:40px;
+    border:0;
+    border-radius:50%;
+    background:#edf2ed;
+    font-size:20px;
+}
+
+.modalEmoji{
+    margin-bottom:10px;
+    font-size:70px;
+}
+
+.modalBox h2{
+    margin-bottom:8px;
+    font-size:32px;
+}
+
+.modalMeta{
+    margin-bottom:22px;
+    color:#68756c;
+}
+
+.modalBox h3{margin:20px 0 10px}
+
+.modalBox ul,
+.modalBox ol{
+    padding-left:23px;
+    line-height:1.8;
+}
+
+footer{
+    margin-top:50px;
+    padding:35px 20px;
+    background:#17351f;
+    color:white;
+    text-align:center;
+}
+
+/* RESPONSIVE */
+@media(max-width:1050px){
+    .recipeGrid{grid-template-columns:repeat(3,1fr)}
+}
+
+@media(max-width:750px){
+    .filters{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr}
+    .recipeGrid{grid-template-columns:repeat(2,1fr)}
+    .nav{flex-direction:column}
+}
+
+@media(max-width:500px){
+    .recipeGrid{grid-template-columns:1fr}
+    .loginBox{padding:28px 22px}
+    .hero{padding:45px 20px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div id="loginScreen">
+
+    <div class="loginBox">
+
+        <div class="loginLogo">🥗</div>
+
+        <h1>FitFood</h1>
+
+        <p id="loginSubtitle">
+            Log in om jouw favoriete recepten te bewaren.
+        </p>
+
+        <input
+            id="usernameInput"
+            type="text"
+            placeholder="Gebruikersnaam"
+            autocomplete="username">
+
+        <input
+            id="passwordInput"
+            type="password"
+            placeholder="Wachtwoord"
+            autocomplete="current-password">
+
+        <button class="loginButton" id="loginButton">
+            Inloggen
+        </button>
+
+        <div class="switchLogin" id="switchLogin">
+            Nog geen account? Account maken
+        </div>
+
+        <div class="loginMessage" id="loginMessage"></div>
+
+    </div>
+
+</div>
+
+
+<!-- WEBSITE -->
+
+<div id="website" style="display:none;">
+
+<header>
+
+    <div class="nav">
+
+        <div class="brand">
+            🥗 FITFOOD RECIPES
+        </div>
+
+        <div class="userArea">
+
+            <div class="userBadge" id="userBadge">
+                👤 Gebruiker
+            </div>
+
+            <button class="logoutButton" id="logoutButton">
+                Uitloggen
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<section class="hero">
+
+    <div class="heroInner">
+
+        <h2>
+            Lekker eten.<br>
+            Gezond leven. 🥗
+        </h2>
+
+        <p>
+            Ontdek honderden FitFood-recepten voor
+            ontbijt, lunch, diner, pizza, snacks en desserts.
+        </p>
+
+    </div>
+
+</section>
+
+
+<main class="container">
+
+    <div class="searchBox">
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="🔎 Zoek op recept, chef of categorie...">
+
+    </div>
+
+
+    <div class="filters">
+
+        <select id="categoryFilter">
+
+            <option value="Alles">
+                Alle categorieën
+            </option>
+
+            <option value="Pasta">
+                🍝 Pasta
+            </option>
+
+            <option value="Kip">
+                🍗 Kip
+            </option>
+
+            <option value="Vlees">
+                🥩 Vlees
+            </option>
+
+            <option value="Vis">
+                🐟 Vis
+            </option>
+
+            <option value="Salades">
+                🥗 Salades
+            </option>
+
+            <option value="Vegetarisch">
+                🥦 Vegetarisch
+            </option>
+
+            <option value="Pizza & Hartig">
+                🍕 Pizza & Hartig
+            </option>
+
+            <option value="Ontbijt">
+                🍳 Ontbijt
+            </option>
+
+            <option value="Soep">
+                🍲 Soep
+            </option>
+
+            <option value="Dessert">
+                🍓 Dessert
+            </option>
+
+        </select>
+
+
+        <select id="chefFilter">
+            <option value="Alles">
+                Alle chefs
+            </option>
+        </select>
+
+
+        <select id="sortFilter">
+
+            <option value="name">
+                Naam A-Z
+            </option>
+
+            <option value="category">
+                Categorie
+            </option>
+
+            <option value="chef">
+                Chef
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+            <strong id="recipeCount">0</strong>
+            Recepten
+        </div>
+
+        <div class="stat">
+            <strong id="favoriteCount">0</strong>
+            Favorieten
+        </div>
+
+        <div class="stat">
+            <strong>10</strong>
+            Categorieën
+        </div>
+
+    </div>
+
+
+    <!-- FAVORIETEN -->
+
+    <section>
+
+        <div class="sectionTitle">
+            <h2>❤️ Mijn favorieten</h2>
+        </div>
+
+        <div class="recipeGrid" id="favoriteGrid"></div>
+
+        <div class="empty" id="favoriteEmpty">
+            Je hebt nog geen favoriete recepten.
+            Klik op ❤️ om een recept te bewaren.
+        </div>
+
+    </section>
+
+
+    <!-- ALLE RECEPTEN -->
+
+    <section>
+
+        <div class="sectionTitle">
+            <h2>🍽️ Alle recepten</h2>
+        </div>
+
+        <div class="recipeGrid" id="recipeGrid"></div>
+
+        <div class="empty" id="noResults" style="display:none;">
+            😕 Geen recepten gevonden.
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <strong>🥗 FitFood Recipes</strong>
+
+    <p style="margin-top:8px;">
+        Gezonde recepten voor iedereen.
+    </p>
+
+</footer>
+
+</div>
+
+
+<!-- RECEPT MODAL -->
+
+<div class="modal" id="recipeModal">
+
+    <div class="modalBox">
+
+        <button class="closeModal" id="closeModal">
+            ✕
+        </button>
+
+        <div class="modalEmoji" id="modalEmoji">
+            🍽️
+        </div>
+
+        <h2 id="modalTitle">
+            Recept
+        </h2>
+
+        <div class="modalMeta" id="modalMeta"></div>
+
+        <h3>🥕 Ingrediënten</h3>
+
+        <ul id="modalIngredients"></ul>
+
+        <h3>👨‍🍳 Bereiding</h3>
+
+        <ol id="modalSteps"></ol>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   ACCOUNTS
+===================================================== */
+
+const ACCOUNT_KEY = "fitfoodAccounts";
+const CURRENT_USER_KEY = "fitfoodCurrentUser";
+
+let accounts =
+    JSON.parse(
+        localStorage.getItem(ACCOUNT_KEY) || "{}"
+    );
+
+let currentUser =
+    localStorage.getItem(CURRENT_USER_KEY) || null;
+
+let loginMode = "login";
+
+
+/* =====================================================
+   ELEMENTEN
+===================================================== */
+
+const loginScreen =
+    document.getElementById("loginScreen");
+
+const website =
+    document.getElementById("website");
+
+const usernameInput =
+    document.getElementById("usernameInput");
+
+const passwordInput =
+    document.getElementById("passwordInput");
+
+const loginButton =
+    document.getElementById("loginButton");
+
+const switchLogin =
+    document.getElementById("switchLogin");
+
+const loginSubtitle =
+    document.getElementById("loginSubtitle");
+
+const loginMessage =
+    document.getElementById("loginMessage");
+
+const userBadge =
+    document.getElementById("userBadge");
+
+const logoutButton =
+    document.getElementById("logoutButton");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const categoryFilter =
+    document.getElementById("categoryFilter");
+
+const chefFilter =
+    document.getElementById("chefFilter");
+
+const sortFilter =
+    document.getElementById("sortFilter");
+
+const recipeGrid =
+    document.getElementById("recipeGrid");
+
+const favoriteGrid =
+    document.getElementById("favoriteGrid");
+
+const favoriteEmpty =
+    document.getElementById("favoriteEmpty");
+
+const noResults =
+    document.getElementById("noResults");
+
+const recipeCount =
+    document.getElementById("recipeCount");
+
+const favoriteCount =
+    document.getElementById("favoriteCount");
+
+const recipeModal =
+    document.getElementById("recipeModal");
+
+const closeModal =
+    document.getElementById("closeModal");
+
+const modalEmoji =
+    document.getElementById("modalEmoji");
+
+const modalTitle =
+    document.getElementById("modalTitle");
+
+const modalMeta =
+    document.getElementById("modalMeta");
+
+const modalIngredients =
+    document.getElementById("modalIngredients");
+
+const modalSteps =
+    document.getElementById("modalSteps");
+
+
+/* =====================================================
+   CHEFS
+===================================================== */
+
+const chefs = [
+    "Jamie Oliver",
+    "Gordon Ramsay",
+    "24Kitchen",
+    "Nigella Lawson",
+    "Ottolenghi",
+    "Sergio Herman",
+    "Rudolph van Veen",
+    "Miljuschka",
+    "Donna Hay",
+    "Jeroen Meus",
+    "Nadiya Hussain",
+    "Paul Hollywood",
+    "Alain Ducasse",
+    "Herman den Blijker",
+    "Massimo Bottura",
+    "Heston Blumenthal",
+    "Anna Olson",
+    "Robert Kranenborg",
+    "Pierre Wind",
+    "Mounir Toub"
+];
+
+
+/* =====================================================
+   RECEPT FUNCTIE
+===================================================== */
+
+let recipes = [];
+let nextId = 1;
+
+function createRecipe(name,chef,category,id){
+
+    let emoji = "🍽️";
+
+    if(category === "Pasta") emoji = "🍝";
+    if(category === "Kip") emoji = "🍗";
+    if(category === "Vlees") emoji = "🥩";
+    if(category === "Vis") emoji = "🐟";
+    if(category === "Salades") emoji = "🥗";
+    if(category === "Vegetarisch") emoji = "🥦";
+    if(category === "Pizza & Hartig") emoji = "🍕";
+    if(category === "Ontbijt") emoji = "🍳";
+    if(category === "Soep") emoji = "🍲";
+    if(category === "Dessert") emoji = "🍓";
+
+    return {
+        id:id,
+        name:name,
+        chef:chef,
+        category:category,
+        emoji:emoji,
+
+        ingredients:[
+            "Verse ingrediënten passend bij het gerecht",
+            "Groenten of andere vulling naar keuze",
+            "1 eetlepel olijfolie",
+            "Kruiden en specerijen naar smaak",
+            "Peper en zout"
+        ],
+
+        steps:[
+            "Bereid alle ingrediënten voor.",
+            "Snijd de ingrediënten in passende stukken.",
+            "Verwarm de pan, oven of grill.",
+            "Bereid het gerecht tot alles gaar en mooi gebakken is.",
+            "Breng op smaak en serveer."
+        ]
+    };
+}
+
+
+/* =====================================================
+   PASTA
+===================================================== */
+
+const pastaRecipes = [
+"Spaghetti Bolognese",
+"Penne Arrabbiata",
+"Fettuccine Alfredo",
+"Spaghetti Carbonara",
+"Lasagne al Forno",
+"Ravioli met Ricotta en Spinazie",
+"Tagliatelle met Paddenstoelen",
+"Penne met Kip en Pesto",
+"Spaghetti Aglio e Olio",
+"Macaroni met Tomaat",
+"Fusilli met Groenten",
+"Tagliatelle Bolognese",
+"Rigatoni met Tomatensaus",
+"Lasagne met Groenten",
+"Spaghetti met Garnalen",
+"Penne met Tonijn",
+"Farfalle met Spinazie",
+"Ravioli met Pompoen",
+"Orzo met Groenten",
+"Linguine met Citroen",
+"Spaghetti met Gehaktballetjes",
+"Penne met Arrabbiata",
+"Rigatoni met Kip",
+"Fusilli met Pesto",
+"Tagliatelle met Zalm",
+"Lasagne met Kip",
+"Macaroni met Kaas",
+"Spaghetti met Courgette",
+"Penne met Broccoli",
+"Ravioli met Champignons",
+"Fettuccine met Kip",
+"Linguine met Knoflook",
+"Orzo met Kip",
+"Spaghetti met Spinazie",
+"Rigatoni met Aubergine",
+"Penne met Tomaat en Basilicum",
+"Fusilli met Kip",
+"Tagliatelle met Roomsaus",
+"Lasagne met Spinazie",
+"Spaghetti met Pesto",
+"Ravioli met Tomaat",
+"Penne met Champignons",
+"Macaroni met Groenten",
+"Linguine met Garnalen",
+"Rigatoni met Mozzarella",
+"Farfalle met Kip",
+"Spaghetti met Paprika",
+"Orzo met Feta",
+"Lasagne met Courgette",
+"Tagliatelle met Zalm en Spinazie",
+"Penne met Kip en Champignons",
+"Spaghetti met Tomaat",
+"Ravioli met Spinazie",
+"Fusilli met Tomatensaus",
+"Rigatoni met Gehakt",
+"Macaroni met Kip",
+"Linguine met Pesto",
+"Spaghetti met Champignons",
+"Penne met Zalm",
+"Lasagne met Aubergine",
+"Farfalle met Tomaat",
+"Orzo met Courgette",
+"Tagliatelle met Groenten",
+"Ravioli met Pesto",
+"Spaghetti met Broccoli",
+"Rigatoni met Kip en Pesto",
+"Penne met Spinazie",
+"Fusilli met Tonijn",
+"Lasagne met Tomaat en Mozzarella",
+"Linguine met Kip",
+"Macaroni met Spinazie",
+"Spaghetti met Garnalen en Knoflook",
+"Penne met Courgette",
+"Ravioli met Champignons en Truffelolie"
+];
+
+
+/* =====================================================
+   KIP + VLEES
+===================================================== */
+
+const meatRecipes = [
+"Biefstuk Stroganoff",
+"Kip Tikka Masala",
+"Runderstoofvlees met Bier",
+"Varkenshaas met Champignonroomsaus",
+"Eendenborst met Sinaasappelsaus",
+"Kip Tandoori",
+"Spareribs met BBQ-saus",
+"Wiener Schnitzel met Citroen",
+"Kip Kiev met Kruidenboter",
+"Beef Wellington",
+"Coq au Vin",
+"Goulash",
+"Lamskoteletten met Muntsaus",
+"Kip Korma",
+"Ossobuco alla Milanese",
+"Pulled Pork uit de Oven",
+"Kip Parmezaan",
+"Boeuf Bourguignon",
+"Cordon Bleu",
+"Kip Jalfrezi",
+"Zweedse Gehaktballetjes",
+"Runderentrecote met Kruidenboter",
+"Kip Cashew",
+"Gebraden Hele Kip",
+"Lamsstoofpot met Abrikozen",
+"Pekingeend",
+"Kip met Knoflook en Citroen",
+"Varkenssaté met Pindasaus",
+"Rundvlees Rendang",
+"Kip Curry met Kokosmelk",
+"Tournedos met Kruidenkorst",
+"Kip Fajitas",
+"Lamsvlees Souvlaki",
+"Varkenshaas in Bladerdeeg",
+"Kip Balti",
+"Runderreepjes in Teriyakisaus",
+"Kip met Zoetzure Saus",
+"Gehaktbrood met Glazuur",
+"Lamsvlees Kebab",
+"Kip met Cashewnoten en Paprika",
+"Biefstuk met Pepersaus",
+"Gebraden Kalkoen",
+"Kip Piccata",
+"Varkensvlees in Ketjapsaus",
+"Runderbiefstuk met Chimichurri",
+"Kip Madras",
+"Lamsboud met Knoflook en Rozemarijn",
+"Kip Karahi",
+"Varkenscarbonade met Mosterdsaus",
+"Runderburger met Bacon en Kaas",
+"Kip met Dragonsaus",
+"Eendenconfit",
+"Lamsvlees Biryani",
+"Kip met Morieljes en Roomsaus",
+"Varkenshaas met Serranoham en Salie",
+"Rundergehaktballetjes in Tomatensaus",
+"Kip met Champignonroomsaus",
+"Lamskoteletten met Geroosterde Knoflook",
+"Kip Saté Ajam",
+"Varkenshaasmedaillons met Spek",
+"Rundvlees Fajitas",
+"Kip Marsala",
+"Geroosterd Varkensbuikspek",
+"Kip Döner Kebab",
+"Runderribeye met Kruidenkorst",
+"Kip met Oestersaus en Broccoli",
+"Lamsstoofvlees met Bier",
+"Kip Katsu Curry",
+"Varkensschnitzel met Jagersaus",
+"Runderbiefstuk met Gorgonzolasaus",
+"Kip Biryani",
+"Geroosterde Eend met Vijgen",
+"Lamskebab met Yoghurtsaus",
+"Kip met Groene Curry",
+"Varkenshaas met Pruimensaus",
+"Runder Carpaccio",
+"Kip met Citroen en Knoflook",
+"Lamsvlees Korma",
+"Kip met Sinaasappel en Gember",
+"Varkensvlees met Groenten",
+"Runderstoofvlees met Mosterd",
+"Kip met Rode Curry",
+"Lamsbout met Honing en Tijm",
+"Kip met Pinda en Chili",
+"Varkensfilet met Appeltjes",
+"Runder T-bone Steak",
+"Kip met Spinazie en Roomkaas",
+"Lamsragout met Wortel",
+"Kip met Honing-Mosterd",
+"Varkensvlees Teriyaki",
+"Runderbiefstuk Tataki",
+"Kip met Kung Pao Saus",
+"Lamsvlees Tikka Masala",
+"Kip met Basilicum en Chili",
+"Varkensvlees met Gember",
+"Rundergehakt Tacos",
+"Kip met Mangosaus",
+"Lamsburger met Feta",
+"Kip met Geroosterde Paprika",
+"Varkenshaas met Brie en Walnoten",
+"Runder Sukadelappen",
+"Kip met Pruimen en Amandelen",
+"Lamskoteletten met Kruidenkorst",
+"Kip met Knoflook en Parmezaan",
+"Varkenshaas met Cranberrysaus",
+"Runderbiefstuk met Rode Wijnsaus",
+"Kip Gyros met Pita",
+"Lamsvlees Madras",
+"Kip Souvlaki",
+"Varkensvlees met Ananas",
+"Runder Ribs met BBQ-saus",
+"Kip met Kokos en Limoen",
+"Lamsstoofvlees met Kikkererwten",
+"Kip met Cashew en Sneeuwerwten",
+"Varkenshaas met Spek en Champignons",
+"Rundergehakt Ovenschotel",
+"Kip met Citroen en Rozemarijn",
+"Lamsvlees Jalfrezi",
+"Kip Shawarma",
+"Varkenshaas met Mosterd-Roomsaus",
+"Runderbiefstuk met Kruidenboter",
+"Kip met Dragon en Witte Wijn",
+"Lamsbout uit de Oven",
+"Kip met Curry en Ananas",
+"Varkensvlees met Szechuan Peper",
+"Rundergehakt Burritos",
+"Kip met Spinazie en Feta",
+"Lamskoteletten met Knoflookboter",
+"Kip met Parmigiana Korst",
+"Varkenshaas met Honing-Mosterdsaus",
+"Runderstoofvlees met Rode Wijn",
+"Kip met Paprika en Tomatensaus",
+"Lamsvlees Curry met Kokos",
+"Kip met Teriyaki en Sesam",
+"Varkensvlees met Champignons",
+"Runder Carpaccio met Parmezaan",
+"Kip met Tomaten-Basilicumsaus",
+"Lamsvlees Balti",
+"Kip met Honing en Sesam",
+"Varkenshaas met Geroosterde Knoflook",
+"Runderbiefstuk met Paddenstoelensaus",
+"Kip met Citroen-Knoflook",
+"Lamsvlees Kebab met Kruiden",
+"Kip met Satésaus en Rijst",
+"Varkensvlees met Knoflook en Gember",
+"Rundergehaktballetjes met Rijst",
+"Kip met Romige Pesto",
+"Lamsstoofvlees met Groenten",
+"Kip met Groene Curry en Rijst"
+];
+
+
+/* =====================================================
+   VIS
+===================================================== */
+
+const fishRecipes = [
+"Zalmmoot met Citroen-Dille Saus",
+"Kabeljauw en Croute met Kruidenkorst",
+"Gamba’s al Ajillo",
+"Paella Valenciana met Zeevruchten",
+"Gebakken Sliptong in Boter",
+"Tonijnsteak met Sesamkorst",
+"Mosselen in Witte Wijnsaus",
+"Fish and Chips met Tartaarsaus",
+"Forel en Papillote",
+"Sint-jakobsschelpen met Spek en Erwtenpuree",
+"Zalm Teriyaki met Paksoi",
+"Bouillabaisse",
+"Gevulde Inktvis met Tomatensaus",
+"Kabeljauwhaasje met Mosterdsaus",
+"Garnalen Tacos met Avocado-limoen Crème",
+"Rogvleugel met Kappertjes en Bruine Boter",
+"Zalmtaartjes met Bladerdeeg",
+"Krabcakes met Remouladesaus",
+"Oesters met Mignonette Saus",
+"Ceviche van Witvis met Limoen en Koriander",
+"Gegrilde Zalm met Mangosalsa",
+"Kabeljauw met Tomaat en Olijven uit de Oven",
+"Garnalen Curry met Kokosmelk",
+"Dorade van de Grill met Citroen en Kruiden",
+"Gerookte Zalm Tartaar met Avocado",
+"Tonijn Tataki met Ponzu",
+"Mosselen met Bier en Prei",
+"Zeebaarsfilet met Antiboise",
+"Knoflookgarnalen met Peterselie",
+"Forel met Amandelen",
+"Zalm Wellington",
+"Kabeljauwcurry met Kikkererwten",
+"Gambaspiesjes van de BBQ",
+"Inktvisringen met Knoflookmayonaise",
+"Zalm met Honing-Mosterd Glazuur",
+"Schelvisfilet met Kruidenkorst",
+"Garnalen Pad Thai",
+"Tarbot met Champagneroomsaus",
+"Gerookte Forelsalade met Mierikswortel",
+"Tonijn Salade Niçoise",
+"Zalm uit de Oven met Pesto",
+"Kabeljauwballetjes in Tomatensaus",
+"Garnalen Risotto met Citroen",
+"Zeewolf met Parmaham en Salie",
+"Zalmburgers met Dillesaus",
+"Heilbotfilet met Geroosterde Kerstomaatjes",
+"Garnalen met Zoetzure Saus",
+"Mosselen met Kokosmelk en Chili",
+"Griekse Gebakken Vis met Tomaat en Feta",
+"Zalm en Papillote met Courgette en Tomaat",
+"Kabeljauw met Prei en Roomsaus",
+"Garnalen met Oestersaus en Groenten",
+"Zeebaars in Zoutkorst",
+"Zalm met Romige Spinaziesaus",
+"Kabeljauwhaasje met Spek en Mosterd",
+"Garnalen Skewers met Limoen",
+"Tonijnsteak met Geroosterde Groenten",
+"Mosselen met Knoflook en Peterselie",
+"Forel uit de Oven met Kruiden",
+"Zalm met Citroen en Rozemarijn",
+"Kabeljauw met Tomatensaus en Rijst",
+"Garnalen met Knoflook en Witte Wijn",
+"Zeebaarsfilet met Citroenboter",
+"Zalm met Teriyakisaus en Rijst",
+"Kabeljauwcurry met Kokos",
+"Garnalen met Rode Curry",
+"Tonijn Salade met Kappertjes",
+"Mosselen met Witte Wijn en Friet",
+"Forel met Citroen en Peterselie",
+"Zalm van de Grill met Asperges",
+"Kabeljauw met Mosterd-Roomsaus",
+"Garnalen met Chilisaus",
+"Zeebaars met Tomatensalsa",
+"Zalm uit de Oven met Knoflook",
+"Kabeljauw met Kruidenkorst en Rijst",
+"Garnalen met Pesto en Pasta",
+"Tonijn Mousse met Toast",
+"Mosselen met Prei en Room",
+"Forel van de Grill met Citroen",
+"Zalm met Asperges en Hollandaisesaus",
+"Kabeljauw met Spinazie en Roomsaus",
+"Garnalen met Knoflookboter en Brood",
+"Zeebaarsfilet met Kruiden",
+"Zalm met Honing en Knoflook",
+"Kabeljauwcurry met Rijst",
+"Garnalen met Groene Curry",
+"Tonijn Tartaar met Komkommer",
+"Mosselen met Knoflook en Witte Wijn",
+"Forel uit de Oven met Citroen",
+"Zalm met Romige Knoflooksaus",
+"Kabeljauw met Geroosterde Tomaat",
+"Garnalen met Tomatensaus en Feta",
+"Zeebaars met Citroen en Olijfolie",
+"Zalm met Pesto en Tomaten",
+"Kabeljauw met Romige Preisaus",
+"Garnalen met Citroen en Peterselie",
+"Tonijnsteak met Geroosterde Paprika",
+"Mosselen met Tomatensaus",
+"Forel met Kruidenboter"
+];
+
+
+/* =====================================================
+   VEGETARISCH
+===================================================== */
+
+const vegetarianRecipes = [
+"Shakshuka (Eieren in pittige tomatensaus)",
+"Melanzane alla Parmigiana",
+"Kikkererwtencurry met Spinazie en Kokos",
+"Gevulde Paprika’s met Couscous en Feta",
+"Falafel in Pitabrood met Hummus",
+"Pompoen Risotto met Salie en Geitenkaas",
+"Dahl van Rode Linzen",
+"Pad Thai met Tofu en Pinda's",
+"Champignon Risotto met Parmezaan",
+"Chili sin Carne met Linzen en Bonen",
+"Geroosterde Bloemkoolsteaks met Tahinsaus",
+"Gevulde Portobello’s met Geitenkaas en Walnoot",
+"Quinoa Salade met Geroosterde Zoete Aardappel",
+"Tofu Roerbak met Broccoliroosjes en Cashew",
+"Groente Tajine met Abrikozen en Couscous",
+"Gnocchi met Geroosterde Paprikasaus",
+"Spinazie- en Feta Strudel",
+"Linzenburgers met Geroosterde Tomaat",
+"Romige Polenta met Paddestoelenragout",
+"Curry van Zoete Aardappel en Kikkererwten",
+"Gevulde Aubergine met Quinoa en Granaatappel",
+"Bloemkool Curry met Erwten",
+"Zwarte Bonen Burgers met Avocado",
+"Risotto met Asperges en Citroen",
+"Geroosterde Groenten met Halloumi",
+"Pasta alla Norma met Aubergine en Ricotta",
+"Tofu Tikka Masala",
+"Salade met Warme Geitenkaas en Honing",
+"Linzenstoofvlees met Wortel en Selderij",
+"Gevulde Courgette met Rijst en Pijnboompitten",
+"Bami Goreng met Tofu en Ei",
+"Geroosterde Kikkererwten Salade met Feta",
+"Pompoensoep met Kokosmelk en Gember",
+"Macaroni met Kaas en Broccoli",
+"Groente Lasagne met Bechamelsaus",
+"Tofu Katsu Curry",
+"Salade met Linzen, Geitenkaas en Biet",
+"Geroosterde Spruitjes met Pecannoten en Esdoornsiroop",
+"Gevulde Tomaat met Couscous en Kruiden",
+"Rijsttafel met Diverse Vegetarische Gerechten",
+"Curry van Kikkererwten en Spinazie",
+"Gevulde Paprika met Linzen en Kaas",
+"Falafel Salade met Hummus en Dressing",
+"Pompoen Ovenschotel met Feta",
+"Dahl van Linzen met Naanbrood",
+"Tofu met Teriyakisaus en Groenten",
+"Risotto met Paddestoelen en Truffel",
+"Chili met Bonen en Maïs",
+"Bloemkool uit de Oven met Tahin",
+"Gevulde Portobello met Spinazie en Ricotta",
+"Quinoa met Geroosterde Groenten",
+"Tofu met Kung Pao Saus",
+"Salade met Feta, Olijven en Tomaat",
+"Geroosterde Zoete Aardappel met Avocado",
+"Groente Curry met Kokos en Rijst",
+"Gevulde Courgette met Linzen en Tomaat",
+"Falafel Wrap met Tzatziki",
+"Pompoen Ravioli met Salieboter",
+"Dahl met Rijst en Spinazie",
+"Tofu met Zoetzure Saus en Rijst",
+"Risotto met Courgette en Citroen",
+"Chili sin Carne met Rijst",
+"Bloemkool Tacos met Avocado Crème",
+"Gevulde Portobello met Blauwe Kaas",
+"Quinoa Salade met Kikkererwten",
+"Tofu met Groene Curry en Rijst",
+"Salade met Mozzarella, Tomaat en Basilicum",
+"Geroosterde Pompoen met Kikkererwten",
+"Groente Roerbak met Cashewnoten",
+"Gevulde Paprika met Quinoa en Tomaat",
+"Falafel met Pita en Salade",
+"Pompoensoep met Geroosterde Kikkererwten",
+"Dahl van Linzen met Spinazie",
+"Tofu met Szechuan Peper",
+"Risotto met Erwten en Munt",
+"Chili met Linzen en Avocado",
+"Bloemkool Curry met Cashewnoten",
+"Gevulde Aubergine met Linzen en Kaas",
+"Quinoa met Geroosterde Pompoen",
+"Tofu met Rode Curry en Rijst",
+"Salade met Kikkererwten en Avocado",
+"Geroosterde Zoete Aardappel met Feta",
+"Groente Curry met Kikkererwten",
+"Gevulde Courgette met Feta en Kruiden",
+"Falafel met Hummus en Brood",
+"Pompoen Ovenschotel met Geitenkaas",
+"Dahl met Naan en Chutney",
+"Tofu met Gember en Knoflook",
+"Risotto met Tomaat en Basilicum",
+"Chili sin Carne met Tortillachips",
+"Bloemkoolsteaks met Pesto",
+"Gevulde Portobello met Geitenkaas",
+"Quinoa Salade met Granaatappel",
+"Tofu Korma met Rijst",
+"Salade met Biet en Geitenkaas",
+"Geroosterde Pompoen met Walnoten",
+"Groente Roerbak met Tofu",
+"Gevulde Paprika met Couscous"
+];
+
+
+/* =====================================================
+   PIZZA & HARTIG
+===================================================== */
+
+const pizzaRecipes = [
+
+"Pizza Margherita (Tomaat, mozzarella, basilicum)",
+"Pizza Quattro Stagioni (Vier seizoenen)",
+"Pizza Pepperoni / Salami",
+"Pizza Quattro Formaggi (Vier kazen)",
+"Pizza Capricciosa (Ham, champignons, olijven)",
+"Quiche Lorraine (Spek en kaas)",
+"Pizza Marinara (Tomaat, knoflook, oregano)",
+"Pizza Tonno (Tonijn en ui)",
+"Pizza Hawaii (Ham en ananas)",
+"Pizza Calzone (Gevouwen pizza)",
+"Quiche met Spinazie en Geitenkaas",
+"Flammkuchen met Spek en Ui (Alsace)",
+"Pizza Prosciutto e Rucola",
+"Pizza met Geroosterde Groenten en Feta",
+"Hartige Taart met Prei en Gehakt",
+"Pizza Pollo BBQ (Kip en BBQ-saus)",
+"Flammkuchen met Zalm en Dille",
+"Quiche met Broccoli en Blauwe Kaas",
+"Pizza met Vier Kazen en Honing",
+"Pizza Bianca met Truffel en Paddenstoelen",
+"Hartige Taart met Pompoen en Geitenkaas",
+"Pizza met Vijgen, Parmaham en Gorgonzola",
+"Pizza Funghi (Champignons)",
+"Quiche met Zalm en Asperges",
+"Pizza met Carpaccio en Parmezaan",
+"Pizza Napoletana (Ansjovis en kappertjes)",
+"Flammkuchen met Geitenkaas en Honing",
+"Hartige Taart met Courgette en Tomaat",
+"Pizza met Bolognesesaus en Kaas",
+"Pizza Siciliana (Olijven, kappertjes, ansjovis)",
+"Quiche met Paddestoelen en Tijm",
+"Pizza met Hete Kip en Paprika",
+"Pizza Gamberi (Garnalen en knoflook)",
+"Hartige Taart met Kip en Champignons",
+"Pizza met Artisjok en Olijven",
+"Pizza Diavola (Pittige salami)",
+"Flammkuchen met Appel en Kaneel (Zoet)",
+"Quiche met Tomaat en Mozzarella",
+"Pizza met Pulled Pork en Jalapeños",
+"Pizza met Geroosterde Knoflook en Spinazie",
+"Hartige Taart met Witlof en Ham",
+"Pizza Quattro Stagioni Vegetarisch",
+"Pizza met Gorgonzola en Peer",
+"Quiche met Kip en Courgette",
+"Pizza met Tonijn, Ui en Kappertjes",
+"Pizza Margherita met Buffalomozzarella",
+"Flammkuchen met Geroosterde Groenten",
+"Hartige Taart met Broccoli en Kip",
+"Pizza met Salami en Champignons",
+"Pizza met Kebab en Knoflooksaus",
+"Quiche met Spinazie en Feta",
+"Pizza met Parmaham en Granaatappel",
+"Pizza met Geroosterde Paprika en Ui",
+"Hartige Taart met Prei en Spek",
+"Pizza met Kip en Pesto",
+"Pizza Quattro Formaggi met Blauwe Kaas",
+"Flammkuchen met Spek, Ui en Kaas",
+"Quiche met Tomaat en Geitenkaas",
+"Pizza met Gehakt en Mexicaanse Kruiden",
+"Pizza met Knoflook, Olijfolie en Rozemarijn",
+"Hartige Taart met Pompoen en Feta",
+"Pizza met Vijgen en Geitenkaas",
+"Pizza Funghi met Truffelolie",
+"Quiche met Zalm en Spinazie",
+"Pizza met Carpaccio en Rucola",
+"Pizza Napoletana met Kappertjes",
+"Flammkuchen met Geitenkaas en Walnoten",
+"Hartige Taart met Courgette en Kaas",
+"Pizza met Bolognese en Mozzarella",
+"Pizza Siciliana met Olijven",
+"Quiche met Champignons en Prei",
+"Pizza met Hete Kip en Ui",
+"Pizza Gamberi met Peterselie",
+"Hartige Taart met Kip en Prei",
+"Pizza met Artisjok en Tomaat",
+"Pizza Diavola met Chili",
+"Flammkuchen met Peer en Blauwe Kaas",
+"Quiche met Tomaat en Basilicum",
+"Pizza met Pulled Pork en BBQ-saus",
+"Pizza met Knoflook en Spinazie",
+"Hartige Taart met Witlof en Spek",
+"Pizza Quattro Stagioni Klassiek",
+"Pizza met Gorgonzola en Walnoten",
+"Quiche met Kip en Paprika",
+"Pizza met Tonijn en Mozzarella",
+"Pizza Margherita met Tomaat",
+"Flammkuchen met Zalm en Ui",
+"Hartige Taart met Broccoli en Gehakt",
+"Pizza met Salami en Olijven",
+"Pizza met Kebab en Chilisaus",
+"Quiche met Spinazie en Ricotta",
+"Pizza met Parmaham en Rucola",
+"Pizza met Geroosterde Paprika",
+"Hartige Taart met Prei en Kaas",
+"Pizza met Kip en Ananas",
+"Pizza Quattro Formaggi met Mozzarella",
+"Flammkuchen met Spek en Prei",
+"Quiche met Courgette en Feta",
+"Pizza met Gehakt en Paprika"
 
 ];
 
 
-/* ==========================================
-   ALLE EXTRA RECEPTEN TOEVOEGEN
-========================================== */
+/* =====================================================
+   EXTRA CATEGORIEËN
+===================================================== */
 
-megaRecipes.forEach((r,i)=>{
+const extraRecipes = {
 
-    recipes.push({
+"Salades":[
+"Caesar Salad",
+"Griekse Salade",
+"Quinoasalade",
+"Avocadosalade",
+"Kipsalade",
+"Pastasalade",
+"Caprese Salade",
+"Tonijnsalade",
+"Rucolasalade",
+"Komkommersalade",
+"Linzensalade",
+"Mexicaanse Salade",
+"Fetasalade",
+"Couscoussalade",
+"Salade met Gegrilde Groenten"
+],
 
-        name:r[0],
+"Ontbijt":[
+"Avocado Toast",
+"Overnight Oats",
+"Yoghurt met Fruit",
+"Banana Pancakes",
+"Scrambled Eggs",
+"Groene Smoothie Bowl",
+"Fruit Bowl",
+"Griekse Yoghurt met Granola",
+"Ei Muffins",
+"Chia Pudding",
+"Havermout met Banaan",
+"Toast met Hummus",
+"Smoothie met Bessen",
+"Breakfast Burrito",
+"Pindakaas Banaan Toast"
+],
 
-        chef:r[1],
+"Soep":[
+"Tomatensoep",
+"Groentesoep",
+"Pompoensoep",
+"Kippensoep",
+"Broccolisoep",
+"Champignonsoep",
+"Linzen Soep",
+"Courgettesoep",
+"Paprikasoep",
+"Thaise Kokossoep",
+"Preisoep",
+"Wortelsoep",
+"Erwtensoep",
+"Minestrone",
+"Knoflooksoep"
+],
 
-        category:r[2],
+"Dessert":[
+"Yoghurt met Bessen",
+"Chocolademousse",
+"Appel uit de Oven",
+"Fruitsalade",
+"Cheesecake",
+"Brownie",
+"Panna Cotta",
+"Banana Nice Cream",
+"Aardbeien met Yoghurt",
+"Chocoladepudding",
+"Citroenkwark",
+"Appelcrumble",
+"Vanillepudding",
+"Chocolade Energy Bites",
+"Mango Sorbet"
+]
 
-        emoji:r[3],
+};
 
-        time:(10+(i%8)*5)+" min",
 
-        description:
-        "Een lekker gerecht voor inspiratie op FitFood.",
+/* =====================================================
+   CATEGORIE KIP/VLEES
+===================================================== */
 
-        ingredients:[
-            "verse ingrediënten",
-            "groenten",
-            "kruiden",
-            "olijfolie"
-        ],
+function getMeatCategory(name){
 
-        steps:
-        "Bereid de ingrediënten voor. " +
-        "Bak, kook of rooster alles tot het gaar is. " +
-        "Breng op smaak met kruiden en serveer.",
+    const text = name.toLowerCase();
 
-        source:
-        "https://www.google.com/search?q="+
-        encodeURIComponent(r[0]+" "+r[1]+" recept")
+    if(
+        text.includes("kip") ||
+        text.includes("chicken") ||
+        text.includes("coq") ||
+        text.includes("katsu") ||
+        text.includes("tandoori") ||
+        text.includes("shawarma") ||
+        text.includes("gyros")
+    ){
+        return "Kip";
+    }
+
+    return "Vlees";
+}
+
+
+/* =====================================================
+   RECEPTEN OPBOUWEN
+===================================================== */
+
+pastaRecipes.forEach(function(name,index){
+
+    recipes.push(
+        createRecipe(
+            name,
+            chefs[index % chefs.length],
+            "Pasta",
+            nextId++
+        )
+    );
+
+});
+
+
+meatRecipes.forEach(function(name,index){
+
+    recipes.push(
+        createRecipe(
+            name,
+            chefs[(index+5) % chefs.length],
+            getMeatCategory(name),
+            nextId++
+        )
+    );
+
+});
+
+
+fishRecipes.forEach(function(name,index){
+
+    recipes.push(
+        createRecipe(
+            name,
+            chefs[(index+10) % chefs.length],
+            "Vis",
+            nextId++
+        )
+    );
+
+});
+
+
+vegetarianRecipes.forEach(function(name,index){
+
+    recipes.push(
+        createRecipe(
+            name,
+            chefs[(index+15) % chefs.length],
+            "Vegetarisch",
+            nextId++
+        )
+    );
+
+});
+
+
+pizzaRecipes.forEach(function(name,index){
+
+    recipes.push(
+        createRecipe(
+            name,
+            chefs[(index+3) % chefs.length],
+            "Pizza & Hartig",
+            nextId++
+        )
+    );
+
+});
+
+
+Object.keys(extraRecipes).forEach(function(category){
+
+    extraRecipes[category].forEach(function(name,index){
+
+        recipes.push(
+            createRecipe(
+                name,
+                chefs[(index+category.length) % chefs.length],
+                category,
+                nextId++
+            )
+        );
 
     });
 
 });
 
 
-/* STATISTIEKEN OPNIEUW BIJWERKEN */
+/* =====================================================
+   FAVORIETEN
+===================================================== */
 
-document.getElementById("recipeCount")
-.textContent=recipes.length;
+function getFavorites(){
+
+    if(!currentUser){
+        return [];
+    }
+
+    return JSON.parse(
+        localStorage.getItem(
+            "fitfoodFavorites_" + currentUser
+        ) || "[]"
+    );
+
+}
 
 
-/* CHEFS OPNIEUW IN DE FILTER ZETTEN */
+function saveFavorites(list){
 
-const allChefs=[
-    ...new Set(recipes.map(r=>r.chef))
-];
+    localStorage.setItem(
+        "fitfoodFavorites_" + currentUser,
+        JSON.stringify(list)
+    );
 
-document.getElementById("chefCount")
-.textContent=allChefs.length;
+}
 
 
-/* Alleen nieuwe chefs toevoegen */
+/* =====================================================
+   CHEFS
+===================================================== */
 
-allChefs.forEach(chef=>{
+function setupChefFilter(){
 
-    if(
-        ![...chefFilter.options]
-        .some(option=>option.value===chef)
-    ){
+    chefFilter.innerHTML =
+        '<option value="Alles">Alle chefs</option>';
 
-        const option=document.createElement("option");
+    chefs.forEach(function(chef){
 
-        option.value=chef;
+        const option =
+            document.createElement("option");
 
-        option.textContent=chef;
+        option.value = chef;
+        option.textContent = chef;
 
         chefFilter.appendChild(option);
 
+    });
+
+}
+
+
+/* =====================================================
+   KAART
+===================================================== */
+
+function createCard(recipe){
+
+    const favorites = getFavorites();
+
+    const favorite =
+        favorites.includes(recipe.id);
+
+    const card =
+        document.createElement("article");
+
+    card.className = "recipeCard";
+
+    card.innerHTML = `
+
+        <div class="recipeImage">
+            ${recipe.emoji}
+        </div>
+
+        <div class="recipeBody">
+
+            <h3>${recipe.name}</h3>
+
+            <div class="recipeChef">
+                👨‍🍳 ${recipe.chef}
+            </div>
+
+            <div class="recipeTags">
+
+                <span class="tag">
+                    ${recipe.category}
+                </span>
+
+                <span class="tag">
+                    🥗 FitFood
+                </span>
+
+            </div>
+
+            <div class="recipeActions">
+
+                <button
+                    class="viewButton"
+                    onclick="openRecipe(${recipe.id})">
+                    Bekijk recept
+                </button>
+
+                <button
+                    class="favoriteButton ${favorite ? "active" : ""}"
+                    onclick="toggleFavorite(${recipe.id})">
+                    ${favorite ? "❤️" : "🤍"}
+                </button>
+
+            </div>
+
+        </div>
+    `;
+
+    return card;
+}
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function renderRecipes(){
+
+    const search =
+        searchInput.value
+        .toLowerCase()
+        .trim();
+
+    const category =
+        categoryFilter.value;
+
+    const chef =
+        chefFilter.value;
+
+    const sort =
+        sortFilter.value;
+
+
+    let filtered =
+        recipes.filter(function(recipe){
+
+            const searchMatch =
+                recipe.name.toLowerCase().includes(search) ||
+                recipe.chef.toLowerCase().includes(search) ||
+                recipe.category.toLowerCase().includes(search);
+
+            const categoryMatch =
+                category === "Alles" ||
+                recipe.category === category;
+
+            const chefMatch =
+                chef === "Alles" ||
+                recipe.chef === chef;
+
+            return (
+                searchMatch &&
+                categoryMatch &&
+                chefMatch
+            );
+
+        });
+
+
+    filtered.sort(function(a,b){
+
+        if(sort === "category"){
+            return a.category.localeCompare(b.category);
+        }
+
+        if(sort === "chef"){
+            return a.chef.localeCompare(b.chef);
+        }
+
+        return a.name.localeCompare(b.name);
+
+    });
+
+
+    recipeGrid.innerHTML = "";
+
+    filtered.forEach(function(recipe){
+
+        recipeGrid.appendChild(
+            createCard(recipe)
+        );
+
+    });
+
+
+    noResults.style.display =
+        filtered.length === 0
+        ? "block"
+        : "none";
+
+
+    recipeCount.textContent =
+        recipes.length;
+
+
+    renderFavorites();
+
+}
+
+
+/* =====================================================
+   FAVORIETEN
+===================================================== */
+
+function renderFavorites(){
+
+    const favorites =
+        getFavorites();
+
+    const favoriteRecipes =
+        recipes.filter(function(recipe){
+
+            return favorites.includes(recipe.id);
+
+        });
+
+
+    favoriteGrid.innerHTML = "";
+
+    favoriteRecipes.forEach(function(recipe){
+
+        favoriteGrid.appendChild(
+            createCard(recipe)
+        );
+
+    });
+
+
+    favoriteEmpty.style.display =
+        favoriteRecipes.length === 0
+        ? "block"
+        : "none";
+
+
+    favoriteCount.textContent =
+        favoriteRecipes.length;
+
+}
+
+
+function toggleFavorite(id){
+
+    let favorites =
+        getFavorites();
+
+
+    if(favorites.includes(id)){
+
+        favorites =
+            favorites.filter(function(item){
+
+                return item !== id;
+
+            });
+
+    }else{
+
+        favorites.push(id);
+
     }
 
-});
+
+    saveFavorites(favorites);
+
+    renderRecipes();
+
+}
 
 
-/* RECEPTEN OPNIEUW LADEN */
+/* =====================================================
+   MODAL
+===================================================== */
 
-renderRecipes();
-updateFavoriteInfo();
+function openRecipe(id){
+
+    const recipe =
+        recipes.find(function(item){
+
+            return item.id === id;
+
+        });
+
+
+    if(!recipe){
+        return;
+    }
+
+
+    modalEmoji.textContent =
+        recipe.emoji;
+
+    modalTitle.textContent =
+        recipe.name;
+
+    modalMeta.textContent =
+        "👨‍🍳 " +
+        recipe.chef +
+        " • 📂 " +
+        recipe.category;
+
+
+    modalIngredients.innerHTML = "";
+
+    recipe.ingredients.forEach(function(item){
+
+        const li =
+            document.createElement("li");
+
+        li.textContent = item;
+
+        modalIngredients.appendChild(li);
+
+    });
+
+
+    modalSteps.innerHTML = "";
+
+    recipe.steps.forEach(function(item){
+
+        const li =
+            document.createElement("li");
+
+        li.textContent = item;
+
+        modalSteps.appendChild(li);
+
+    });
+
+
+    recipeModal.classList.add("show");
+
+}
+
+
+function closeRecipe(){
+
+    recipeModal.classList.remove("show");
+
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function showWebsite(){
+
+    loginScreen.style.display = "none";
+    website.style.display = "block";
+
+    userBadge.textContent =
+        "👤 " + currentUser;
+
+    setupChefFilter();
+    renderRecipes();
+
+}
+
+
+function showLogin(){
+
+    loginScreen.style.display = "flex";
+    website.style.display = "none";
+
+}
+
+
+function setLoginMode(mode){
+
+    loginMode = mode;
+
+    loginMessage.textContent = "";
+
+    usernameInput.value = "";
+    passwordInput.value = "";
+
+
+    if(mode === "login"){
+
+        loginSubtitle.textContent =
+            "Log in om jouw favoriete recepten te bewaren.";
+
+        loginButton.textContent =
+            "Inloggen";
+
+        switchLogin.textContent =
+            "Nog geen account? Account maken";
+
+    }else{
+
+        loginSubtitle.textContent =
+            "Maak gratis een FitFood-account.";
+
+        loginButton.textContent =
+            "Account maken";
+
+        switchLogin.textContent =
+            "Heb je al een account? Inloggen";
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGIN / REGISTREREN
+===================================================== */
+
+function loginOrRegister(){
+
+    const username =
+        usernameInput.value.trim();
+
+    const password =
+        passwordInput.value;
+
+
+    if(username.length < 3){
+
+        loginMessage.style.color =
+            "#d32f2f";
+
+        loginMessage.textContent =
+            "Gebruikersnaam moet minimaal 3 tekens zijn.";
+
+        return;
+
+    }
+
+
+    if(password.length < 4){
+
+        loginMessage.style.color =
+            "#d32f2f";
+
+        loginMessage.textContent =
+            "Wachtwoord moet minimaal 4 tekens zijn.";
+
+        return;
+
+    }
+
+
+    if(loginMode === "register"){
+
+        if(accounts[username]){
+
+            loginMessage.style.color =
+                "#d32f2f";
+
+            loginMessage.textContent =
+                "Deze gebruikersnaam bestaat al.";
+
+            return;
+
+        }
+
+
+        accounts[username] = {
+            password:password
+        };
+
+
+        localStorage.setItem(
+            ACCOUNT_KEY,
+            JSON.stringify(accounts)
+        );
+
+
+        currentUser = username;
+
+
+        localStorage.setItem(
+            CURRENT_USER_KEY,
+            currentUser
+        );
+
+
+        showWebsite();
+
+        return;
+
+    }
+
+
+    if(!accounts[username]){
+
+        loginMessage.style.color =
+            "#d32f2f";
+
+        loginMessage.textContent =
+            "Dit account bestaat niet.";
+
+        return;
+
+    }
+
+
+    if(
+        accounts[username].password !==
+        password
+    ){
+
+        loginMessage.style.color =
+            "#d32f2f";
+
+        loginMessage.textContent =
+            "Het wachtwoord klopt niet.";
+
+        return;
+
+    }
+
+
+    currentUser = username;
+
+    localStorage.setItem(
+        CURRENT_USER_KEY,
+        currentUser
+    );
+
+    showWebsite();
+
+}
+
+
+/* =====================================================
+   EVENTS
+===================================================== */
+
+loginButton.addEventListener(
+    "click",
+    loginOrRegister
+);
+
+
+switchLogin.addEventListener(
+    "click",
+    function(){
+
+        if(loginMode === "login"){
+            setLoginMode("register");
+        }else{
+            setLoginMode("login");
+        }
+
+    }
+);
+
+
+usernameInput.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+            loginOrRegister();
+        }
+
+    }
+);
+
+
+passwordInput.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+            loginOrRegister();
+        }
+
+    }
+);
+
+
+logoutButton.addEventListener(
+    "click",
+    function(){
+
+        localStorage.removeItem(
+            CURRENT_USER_KEY
+        );
+
+        currentUser = null;
+
+        setLoginMode("login");
+        showLogin();
+
+    }
+);
+
+
+searchInput.addEventListener(
+    "input",
+    renderRecipes
+);
+
+
+categoryFilter.addEventListener(
+    "change",
+    renderRecipes
+);
+
+
+chefFilter.addEventListener(
+    "change",
+    renderRecipes
+);
+
+
+sortFilter.addEventListener(
+    "change",
+    renderRecipes
+);
+
+
+closeModal.addEventListener(
+    "click",
+    closeRecipe
+);
+
+
+recipeModal.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === recipeModal){
+            closeRecipe();
+        }
+
+    }
+);
+
+
+/* =====================================================
+   START
+===================================================== */
+
+if(
+    currentUser &&
+    accounts[currentUser]
+){
+
+    showWebsite();
+
+}else{
+
+    showLogin();
+
+}
+
+</script>
+
+</body>
+</html>
